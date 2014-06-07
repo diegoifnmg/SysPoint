@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./Global.xhtml">
+
+            <ui:define name="content">
+                <br/>
+                <p>
+                Login: <p:inputText value="#{pessoaController.entidade.login}" 
+                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+                Senha: <p:inputText value="#{pessoaController.entidade.senha}" 
+                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+                </p>
+                <br/>
+                Nome: <p:inputText value="#{pessoaController.entidade.nome}" 
+                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+                CPF: <p:inputText value="#{pessoaController.entidade.cpf}" 
+                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+                <p>
+                <br/>
+                RG: <p:inputText value="#{pessoaController.entidade.rg}" 
+                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+                <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="2">
+                        <p:outputLabel for="sexo" value="Sexo:" />
+                         <p:selectOneMenu id="sexo" value="#{pessoaController.entidade.sexo}">
+                            <f:selectItem itemLabel="Masculino" itemValue="0" />
+                            <f:selectItem itemLabel="Feminino" itemValue="1" />
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                </p>
+                Data Nascimento: <p:calendar value="#{pessoaController.entidade.sexo}" 
+                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+                
+                
+                <p:commandButton ajax="false" value="Salvar" action="#{pessoaController.salvar}"/>
+            </ui:define>
+        </ui:composition>
+
+    </body>
+</html>

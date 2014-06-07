@@ -44,7 +44,7 @@ public class PessoaController implements Serializable {
 
     public String novo(){
         entidade = new Pessoa();
-        return "CadastroPessoa.xhtml";
+        return "editarPessoa.xhtml";
     }
     
     public PessoaDAO getDao() {
