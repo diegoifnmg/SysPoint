@@ -46,7 +46,7 @@ public class Pessoa implements Serializable {
     private String rg;
 
     @Column(name = "sexo", length = 1)
-    private int sexo;
+    private String sexo;
 
     @Temporal(TemporalType.DATE)
     private Date datanasc;
@@ -69,7 +69,7 @@ public class Pessoa implements Serializable {
     @JoinColumn(name = "enderecoid")
     private Endereco endereco;
 
-    public Pessoa(String nome, int sexo, Date datanasc, String login, 
+    public Pessoa(String nome, String sexo, Date datanasc, String login, 
             String senha, Email email, Telefone telefone, Endereco endereco) {
         this.nome = nome;
         this.sexo = sexo;
@@ -83,7 +83,7 @@ public class Pessoa implements Serializable {
 
     public Pessoa() {
         this.nome = "";
-        this.sexo = 0;
+        this.sexo = "";
         this.datanasc = new Date();
         this.login = "";
         this.senha = "";
@@ -100,11 +100,11 @@ public class Pessoa implements Serializable {
         this.rg = rg;
     }
 
-    public int getSexo() {
+    public String getSexo() {
         return sexo;
     }
 
-    public void setSexo(int sexo) {
+    public void setSexo(String sexo) {
         this.sexo = sexo;
     }
 

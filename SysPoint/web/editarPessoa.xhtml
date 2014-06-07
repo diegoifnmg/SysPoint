@@ -23,20 +23,24 @@
                                    required="true" requiredMessage="Este campo é obrigatorio"/>
                 CPF: <p:inputText value="#{pessoaController.entidade.cpf}" 
                                    required="true" requiredMessage="Este campo é obrigatorio"/>
-                <p>
+                
                 <br/>
                 RG: <p:inputText value="#{pessoaController.entidade.rg}" 
                                    required="true" requiredMessage="Este campo é obrigatorio"/>
+               
                 <h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="2">
                         <p:outputLabel for="sexo" value="Sexo:" />
                          <p:selectOneMenu id="sexo" value="#{pessoaController.entidade.sexo}">
-                            <f:selectItem itemLabel="Masculino" itemValue="0" />
-                            <f:selectItem itemLabel="Feminino" itemValue="1" />
+                            <f:selectItem itemLabel="Masculino" itemValue="M" />
+                            <f:selectItem itemLabel="Feminino" itemValue="F" />
                     </p:selectOneMenu>
                 </h:panelGrid>
-                </p>
-                Data Nascimento: <p:calendar value="#{pessoaController.entidade.sexo}" 
+                
+                Data Nascimento: <p:calendar value="#{pessoaController.entidade.datanasc}" 
                                    required="true" requiredMessage="Este campo é obrigatorio"/>
+                
+                
+                
                 
                 
                 <p:commandButton ajax="false" value="Salvar" action="#{pessoaController.salvar}"/>
