@@ -39,10 +39,10 @@ public class Pessoa implements Serializable {
     @Column(name = "nome", length = 255)
     private String nome;
 
-    @Column(name = "cpf", length = 11)
+    @Column(name = "cpf", length = 14)
     private String cpf;
 
-    @Column(name = "rg", length = 11)
+    @Column(name = "rg", length = 14)
     private String rg;
 
     @Column(name = "sexo", length = 1)
