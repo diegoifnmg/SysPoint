@@ -1,4 +1,4 @@
-package br.edu.ifnmg.tads.as.Presentation;
+package br.edu.ifnmg.tads.as.Controllers;
 
 /*
  * To change this template, choose Tools | Templates

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.edu.ifnmg.tads.as.Presentation;
+package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.as.Infraestrutura.FuncionarioDAO;
