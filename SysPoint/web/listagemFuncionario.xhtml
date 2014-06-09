@@ -12,7 +12,7 @@
             <ui:define name="content">
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Nome"/>
-                    <p:inputText value="#{FuncionarioController.filtro.nome}"/>
+                    <p:inputText value="#{funcionarioController.filtro.nome}"/>
 
                 </p:panelGrid>
                 <p:commandButton value="Filtrar" action="#{funcionarioController.filtrar()}" update="listagem"/>
@@ -23,12 +23,32 @@
                         #{item.id}
                     </p:column> 
 
+                    <p:column sortBy="login" headerText="Login">
+                        #{item.nome}
+                    </p:column>
+                    
                     <p:column sortBy="nome" headerText="Nome">
+                        #{item.nome}
+                    </p:column>
+                    
+                    <p:column sortBy="cpf" headerText="CPF">
+                        #{item.nome}
+                    </p:column>
+                    
+                    <p:column sortBy="rg" headerText="RG">
+                        #{item.nome}
+                    </p:column>
+                    
+                    <p:column sortBy="sexo" headerText="Sexo">
+                        #{item.nome}
+                    </p:column>
+                    
+                    <p:column sortBy="dataNasc" headerText="Nascimento">
                         #{item.nome}
                     </p:column>
 
                     <p:column>
-                        <p:commandButton value="Editar" action="editarFuncionario.xhtml">
+                        <p:commandButton value="Editar" action="editarPessoa.xhtml">
                             <f:setPropertyActionListener target="#{funcionarioController.entidade}" value="#{item}"/>
                         </p:commandButton>
                     </p:column>

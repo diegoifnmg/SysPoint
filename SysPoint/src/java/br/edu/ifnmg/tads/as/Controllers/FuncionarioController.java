@@ -91,7 +91,7 @@ public class FuncionarioController implements Serializable {
 
     public String novo(){
         entidade = new Funcionario();
-        return "CadastroFuncionario.xhtml";
+        return "editarFuncionario.xhtml";
     }
     
 }
