@@ -10,49 +10,81 @@
         <ui:composition template="./Global.xhtml">
 
             <ui:define name="content">
-                <p:growl id="mensagens" />
-                <p:panelGrid columns="2">
-                    <f:facet name="header">
-                        Editar Pessoa
-                    </f:facet>
-                <br/>
 
-                Login: <p:inputText value="#{pessoaController.entidade.login}" 
-                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                Senha: <p:inputText value="#{pessoaController.entidade.senha}" 
-                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                Nome: <p:inputText value="#{pessoaController.entidade.nome}" 
-                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                CPF: <p:inputText value="#{pessoaController.entidade.cpf}" 
-                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                RG: <p:inputText value="#{pessoaController.entidade.rg}" 
-                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                <p:outputLabel for="sexo" value="Sexo:" />
-                    <p:selectOneMenu id="sexo" value="#{pessoaController.entidade.sexo}">
-                        <f:selectItem itemLabel="Masculino" itemValue="M" />
-                        <f:selectItem itemLabel="Feminino" itemValue="F" />
-                    </p:selectOneMenu>
-                Data Nascimento: <p:calendar value="#{pessoaController.entidade.datanasc}" 
-                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                <f:facet name="footer">
-                        <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
-                        <p:commandButton value="Apagar" onclick="msgApagar.show();"/>
-                        <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemPessoa.xhtml"/>
-                    </f:facet>
-                </p:panelGrid>
-                
-                <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
-                                 widgetVar="msgSalvar" >
-                    <p:commandButton ajax="false" value="Sim" action="#{pessoaController.salvar()}"/>
-                    <p:commandButton value="Não" onclick="msgSalvar.hide();" />
-                </p:confirmDialog>
-                
-                <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
-                                 widgetVar="msgApagar" >
-                    <p:commandButton ajax="false" value="Sim" action="#{pessoaController.salvar()}"/>
-                    <p:commandButton value="Não" onclick="msgApagar.hide();" />
-                </p:confirmDialog>
-                
+                <p:growl id="msgs" showDetail="true" />
+
+                <h3 style="margin-top:0">Cadastro de Pessoa</h3>
+                <p:tabView>
+                    <p:tab title="Pessoa">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:growl id="mensagens" />
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    Editar Pessoa
+                                </f:facet>
+                                <br/>
+                                Login: <p:inputText value="#{pessoaController.entidade.login}" 
+                                                    required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Senha: <p:inputText value="#{pessoaController.entidade.senha}" 
+                                                    required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Nome: <p:inputText value="#{pessoaController.entidade.nome}" 
+                                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+                                CPF: <p:inputText value="#{pessoaController.entidade.cpf}" 
+                                                  required="true" requiredMessage="Este campo é obrigatorio"/>
+                                RG: <p:inputText value="#{pessoaController.entidade.rg}" 
+                                                 required="true" requiredMessage="Este campo é obrigatorio"/>
+                                <p:outputLabel for="sexo" value="Sexo:" />
+                                <p:selectOneMenu id="sexo" value="#{pessoaController.entidade.sexo}">
+                                    <f:selectItem itemLabel="Masculino" itemValue="M" />
+                                    <f:selectItem itemLabel="Feminino" itemValue="F" />
+                                </p:selectOneMenu>
+                                Data Nascimento: <p:calendar value="#{pessoaController.entidade.datanasc}" 
+                                                             required="true" requiredMessage="Este campo é obrigatorio"/>
+                                <f:facet name="footer">
+                                    <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
+                                    <p:commandButton value="Apagar" onclick="msgApagar.show();"/>
+                                    <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemPessoa.xhtml"/>
+                                </f:facet>
+                            </p:panelGrid>
+
+                            <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
+                                             widgetVar="msgSalvar" >
+                                <p:commandButton ajax="false" value="Sim" action="#{pessoaController.salvar()}"/>
+                                <p:commandButton value="Não" onclick="msgSalvar.hide();" />
+                            </p:confirmDialog>
+
+                            <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
+                                             widgetVar="msgApagar" >
+                                <p:commandButton ajax="false" value="Sim" action="#{pessoaController.salvar()}"/>
+                                <p:commandButton value="Não" onclick="msgApagar.hide();" />
+                            </p:confirmDialog>
+
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Endereço">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage name="demo/images/godfather/godfather2.jpg" />
+                            <h:outputText value="Francis Ford Coppola's legendary..." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Telefone">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                            <h:outputText value="After a break of more than 15 years..." />
+                        </h:panelGrid>
+                    </p:tab>
+                    <p:tab title="Email">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
+                            <h:outputText value="After a break of more than 15 years..." />
+                        </h:panelGrid>
+                    </p:tab>
+                </p:tabView>
+
+
+
+
+
             </ui:define>
 
         </ui:composition>
