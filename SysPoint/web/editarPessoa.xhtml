@@ -65,41 +65,54 @@
                         <h:panelGrid columns="2" cellpadding="10">
                             <p:growl id="mensagens" />
                             <p:panelGrid columns="2">
-                            <f:facet name="header">
-                                Editar Endereço
-                            </f:facet>
-                            Rua: <p:inputText value="#{pessoaController.entidade.endereco.rua}" 
-                                              required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Numero: <p:inputText value="#{pessoaController.entidade.endereco.numero}" 
-                                                 required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Bairro: <p:inputText value="#{pessoaController.entidade.endereco.bairro}" 
-                                                 required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Complemento: <p:inputText value="#{pessoaController.entidade.endereco.complemento}" 
-                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Cidade: <p:inputText value="#{pessoaController.entidade.endereco.cidade}" 
-                                                 required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Bairro: <p:inputText value="#{pessoaController.entidade.endereco.bairro}" 
-                                                 required="true" requiredMessage="Este campo é obrigatorio"/>
-                            CEP: <p:inputText value="#{pessoaController.entidade.endereco.cep}" 
-                                              required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Estado: <p:inputText value="#{pessoaController.entidade.endereco.estado}" 
-                                                 required="true" requiredMessage="Este campo é obrigatorio"/>
-                            País: <p:inputText value="#{pessoaController.entidade.endereco.pais}" 
-                                               required="true" requiredMessage="Este campo é obrigatorio"/>
+                                <f:facet name="header">
+                                    Editar Endereço
+                                </f:facet>
+                                Rua: <p:inputText value="#{pessoaController.entidade.endereco.rua}" 
+                                                  required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Numero: <p:inputText value="#{pessoaController.entidade.endereco.numero}" 
+                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Bairro: <p:inputText value="#{pessoaController.entidade.endereco.bairro}" 
+                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Complemento: <p:inputText value="#{pessoaController.entidade.endereco.complemento}"/> 
+                                Cidade: <p:inputText value="#{pessoaController.entidade.endereco.cidade}" 
+                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Bairro: <p:inputText value="#{pessoaController.entidade.endereco.bairro}" 
+                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
+                                CEP: <p:inputText value="#{pessoaController.entidade.endereco.cep}" 
+                                                  required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Estado: <p:inputText value="#{pessoaController.entidade.endereco.estado}" 
+                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
+                                País: <p:inputText value="#{pessoaController.entidade.endereco.pais}" 
+                                                   required="true" requiredMessage="Este campo é obrigatorio"/>
                             </p:panelGrid>
 
                         </h:panelGrid>
                     </p:tab>
                     <p:tab title="Telefone">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                            <h:outputText value="After a break of more than 15 years..." />
+                            <p:growl id="mensagens" />
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    Editar Telefone
+                                </f:facet>
+                                DDD: <p:inputText value="#{pessoaController.entidade.telefone.ddd}" 
+                                                  required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Telefone: <p:inputText value="#{pessoaController.entidade.telefone.numero}" 
+                                                       required="true" requiredMessage="Este campo é obrigatorio"/>
+                            </p:panelGrid>
                         </h:panelGrid>
                     </p:tab>
                     <p:tab title="Email">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:graphicImage name="demo/images/godfather/godfather3.jpg" />
-                            <h:outputText value="After a break of more than 15 years..." />
+                            <p:growl id="mensagens" />
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    Editar Email
+                                </f:facet>
+                                Telefone: <p:inputText value="#{pessoaController.entidade.email}" 
+                                                       required="true" requiredMessage="Este campo é obrigatorio"/>
+                            </p:panelGrid>
                         </h:panelGrid>
                     </p:tab>
                 </p:tabView>
