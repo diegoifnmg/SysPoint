@@ -8,12 +8,15 @@ package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 
 /**
  *
  * @author Maike
  */
 @Entity
-public class Administrador extends Pessoa implements Serializable {
+public class Administrador extends Pessoa implements Entidade, Serializable {
+    
+    
     
 }
