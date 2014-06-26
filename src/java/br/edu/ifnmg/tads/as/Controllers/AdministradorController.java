@@ -8,13 +8,13 @@ import br.edu.ifnmg.tads.as.DomainModel.Administrador;
 import br.edu.ifnmg.tads.as.DomainModel.Email;
 import br.edu.ifnmg.tads.as.DomainModel.Endereco;
 import br.edu.ifnmg.tads.as.DomainModel.Expediente;
-import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.as.DomainModel.Telefone;
+import br.edu.ifnmg.tads.as.Infraestrutura.AdministradorDAO;
 import br.edu.ifnmg.tads.as.Infraestrutura.FuncionarioDAO;
 import java.io.Serializable;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -42,7 +42,7 @@ public class AdministradorController extends ControllerGenerico<Administrador> i
         expediente = new Expediente();
     }
     @EJB
-    FuncionarioDAO dao;
+    AdministradorDAO dao;
 
     @Override
     public void salvar() {
@@ -86,11 +86,11 @@ public class AdministradorController extends ControllerGenerico<Administrador> i
     }
     
     
-    public FuncionarioDAO getDao() {
+    public AdministradorDAO getDao() {
         return dao;
     }
 
-    public void setDao(FuncionarioDAO dao) {
+    public void setDao(AdministradorDAO dao) {
         this.dao = dao;
     }
 

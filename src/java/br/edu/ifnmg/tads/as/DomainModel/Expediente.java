@@ -7,13 +7,12 @@ package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 /**
  *
@@ -24,17 +23,15 @@ public class Expediente implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long expedienteid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "nome")
     private String nome;
 
-    @Temporal(TemporalType.DATE)
-    private Date inicio;
+    private String inicio;
 
-    @Temporal(TemporalType.DATE)
-    private Date fim;
+    private String fim;
 
     public String getNome() {
         return nome;
@@ -44,57 +41,67 @@ public class Expediente implements Serializable {
         this.nome = nome;
     }
 
-    public Date getInicio() {
-        return inicio;
-    }
-
-    public void setInicio(Date inicio) {
-        this.inicio = inicio;
-    }
-
-    public Date getFim() {
-        return fim;
-    }
-
-    public void setFim(Date fim) {
-        this.fim = fim;
-    }
-
     public Expediente(String nome, Date inicio, Date fim) {
         this.nome = nome;
-        this.inicio = inicio;
-        this.fim = fim;
+        this.inicio = "";
+        this.fim = "";
     }
 
     public Expediente() {
         this.nome = "";
-        this.inicio = null;
-        this.fim = null;
+        this.inicio = "";
+        this.fim = "";
     }
 
-    public Long getExpedienteid() {
-        return expedienteid;
+    public Long getId() {
+        return id;
     }
 
-    public void setExpedienteid(Long expedienteid) {
-        this.expedienteid = expedienteid;
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getInicio() {
+        return inicio;
+    }
+
+    public void setInicio(String inicio) {
+        this.inicio = inicio;
+    }
+
+    public String getFim() {
+        return fim;
+    }
+
+    public void setFim(String fim) {
+        this.fim = fim;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (expedienteid != null ? expedienteid.hashCode() : 0);
+        int hash = 3;
+        hash = 59 * hash + Objects.hashCode(this.nome);
+        hash = 59 * hash + Objects.hashCode(this.inicio);
+        hash = 59 * hash + Objects.hashCode(this.fim);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Expediente)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Expediente other = (Expediente) object;
-        if ((this.expedienteid == null && other.expedienteid != null) || (this.expedienteid != null && !this.expedienteid.equals(other.expedienteid))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Expediente other = (Expediente) obj;
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.inicio, other.inicio)) {
+            return false;
+        }
+        if (!Objects.equals(this.fim, other.fim)) {
             return false;
         }
         return true;
@@ -102,7 +109,7 @@ public class Expediente implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.as.DomainModel.Expediente[ id=" + expedienteid + " ]";
+        return nome;
     }
 
 }

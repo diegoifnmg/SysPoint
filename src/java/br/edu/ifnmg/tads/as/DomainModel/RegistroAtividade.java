@@ -24,7 +24,7 @@ import javax.persistence.TemporalType;
 public class RegistroAtividade implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long registroatividadeid;
     
     @Temporal(TemporalType.DATE)

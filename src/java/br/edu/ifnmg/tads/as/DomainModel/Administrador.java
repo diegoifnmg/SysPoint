@@ -15,7 +15,7 @@ import javax.persistence.OneToOne;
  * @author Maike
  */
 @Entity
-public class Administrador extends Pessoa implements Entidade, Serializable {
+public class Administrador extends Pessoa implements  Serializable {
     
     
     

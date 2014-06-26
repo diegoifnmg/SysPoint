@@ -8,12 +8,14 @@ package br.edu.ifnmg.tads.as.Infraestrutura;
 
 import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import java.util.List;
+import javax.ejb.Stateless;
 import javax.persistence.Query;
 
 /**
  *
- * @author Jéssica
+ * @author MAIKE
  */
+@Stateless
 public class FuncionarioDAO extends GenericoDAO<Funcionario>{
 
     public FuncionarioDAO() {

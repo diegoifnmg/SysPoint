@@ -12,7 +12,7 @@
             <ui:define name="content">
                 <p:tabView>
                     <p:tab title="Pessoa">
-                        <p:growl id="mensagens" />
+                        <p:growl id="mensagens1" />
                         <p:panelGrid columns="2">
                             <f:facet name="header">
                                 Editar Funcionario
@@ -22,7 +22,7 @@
                             Login: <p:inputText value="#{funcionarioController.entidade.login}" 
                                                 required="true" requiredMessage="Este campo é obrigatorio"/>
                             Senha: <p:password id="feedback" value="#{funcionarioController.entidade.senha}" feedback="true" 
-                                                                          promptLabel="Insira uma senha" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
+                                               promptLabel="Insira uma senha" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
 
                             Nome: <p:inputText value="#{funcionarioController.entidade.nome}" 
                                                required="true" requiredMessage="Este campo é obrigatorio"/>
@@ -37,35 +37,44 @@
                             </p:selectOneMenu>
                             Data Nascimento: <p:calendar value="#{funcionarioController.entidade.datanasc}" required="true"
                                                          label="Data de Nascimento" pattern="dd/MM/yyyy" />   
+                            <p:outputLabel for="exp" value="Nome Expediente: "/>
+                            <p:selectOneMenu id="exp" value="#{funcionarioController.entidade.expedientenome}"
+                                             required="true" requiredMessage="Este campo é obrigatorio">
+                                <f:selectItem itemLabel="Diurno" itemValue="Diurno" />
+                                <f:selectItem itemLabel="Noturno" itemValue="Noturno" />
+                                <f:selectItem itemLabel="Misto" itemValue="Misto" />
 
-                            Expediente Inicio: <p:inputText value="#{funcionarioController.entidade.expediente.inicio}" 
-                                                            required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Expediente Fim: <p:inputText value="#{funcionarioController.entidade.expediente.fim}" 
-                                                         required="true" requiredMessage="Este campo é obrigatorio"/>
+                            </p:selectOneMenu>
 
+                            Inicio : <p:inputText value="#{funcionarioController.entidade.expedienteinicio}"
+                                                  required="true" requiredMessage="Este campo é obrigatorio"/>
+                            Fim : <p:inputText value="#{funcionarioController.entidade.expedientefim}"
+                                               required="true" requiredMessage="Este campo é obrigatorio"/>
 
                             <f:facet name="footer">
                                 <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
                                 <p:commandButton value="Apagar" onclick="msgApagar.show();"/>
                                 <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemPessoa.xhtml"/>
+
+                                <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
+                                                 widgetVar="msgSalvar" >
+                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
+                                    <p:commandButton value="Não" onclick="msgSalvar.hide();" />
+                                </p:confirmDialog>
+
+                                <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
+                                                 widgetVar="msgApagar" >
+                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
+                                    <p:commandButton value="Não" onclick="msgApagar.hide();" />
+                                </p:confirmDialog>
+
                             </f:facet>
                         </p:panelGrid>
                     </p:tab>
-                    <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
-                                     widgetVar="msgSalvar" >
-                        <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
-                        <p:commandButton value="Não" onclick="msgSalvar.hide();" />
-                    </p:confirmDialog>
-
-                    <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
-                                     widgetVar="msgApagar" >
-                        <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
-                        <p:commandButton value="Não" onclick="msgApagar.hide();" />
-                    </p:confirmDialog>
 
                     <p:tab title="Endereço">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:growl id="mensagens" />
+                            <p:growl id="mensagens2" />
                             <p:panelGrid columns="2">
                                 <f:facet name="header">
                                     Editar Endereço
@@ -89,9 +98,10 @@
 
                         </h:panelGrid>
                     </p:tab>
+
                     <p:tab title="Telefone">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:growl id="mensagens" />
+                            <p:growl id="mensagens3" />
                             <p:panelGrid columns="2">
                                 <f:facet name="header">
                                     Editar Telefone
@@ -103,20 +113,21 @@
                             </p:panelGrid>
                         </h:panelGrid>
                     </p:tab>
+
                     <p:tab title="Email">
                         <h:panelGrid columns="2" cellpadding="10">
-                            <p:growl id="mensagens" />
+                            <p:growl id="mensagens4" />
                             <p:panelGrid columns="2">
                                 <f:facet name="header">
                                     Editar Email
                                 </f:facet>
                                 Email: <p:inputText value="#{funcionarioController.email.endereco}" 
-                                                       required="true" requiredMessage="Este campo é obrigatorio"/>
+                                                    required="true" requiredMessage="Este campo é obrigatorio"/>
                             </p:panelGrid>
                         </h:panelGrid>
                     </p:tab>
-                </p:tabView>
 
+                </p:tabView>
             </ui:define>
 
         </ui:composition>

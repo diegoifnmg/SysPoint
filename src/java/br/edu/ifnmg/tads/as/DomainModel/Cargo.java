@@ -23,7 +23,7 @@ import javax.persistence.OneToMany;
 public class Cargo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cargoid;
     
     @Column(name="nome", length = 255)

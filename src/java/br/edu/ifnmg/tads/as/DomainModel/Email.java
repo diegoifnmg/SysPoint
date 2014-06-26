@@ -21,7 +21,7 @@ import javax.persistence.Id;
 public class Email implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long emailid;
     
     @Column(name = "endereco", length = 20)

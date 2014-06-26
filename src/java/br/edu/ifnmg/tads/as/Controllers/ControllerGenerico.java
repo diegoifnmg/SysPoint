@@ -9,6 +9,7 @@ import java.util.List;
 /**
  *
  * @author Maike Jordan
+ * @param <T>
  */
 public abstract class ControllerGenerico<T> {
     

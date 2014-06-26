@@ -12,9 +12,10 @@ import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.as.DomainModel.Telefone;
 import br.edu.ifnmg.tads.as.Infraestrutura.FuncionarioDAO;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -24,8 +25,7 @@ import javax.inject.Named;
  */
 @Named(value = "funcionarioController")
 @SessionScoped
-public class FuncionarioController
-        extends ControllerGenerico<Funcionario> implements Serializable {
+public class FuncionarioController implements Serializable {
 
     /**
      * Creates a new instance of FuncionarioController
@@ -34,6 +34,8 @@ public class FuncionarioController
     Telefone telefone;
     Endereco endereco;
     Expediente expediente;
+    Funcionario entidade, filtro;
+    List<Funcionario> listagem;
 
     public FuncionarioController() {
         entidade = new Funcionario();
@@ -46,7 +48,6 @@ public class FuncionarioController
     @EJB
     FuncionarioDAO dao;
 
-    @Override
     public void salvar() {
         if (dao.Salvar(entidade)) {
             exibirMensagem("Salvo com sucesso!");
@@ -56,18 +57,15 @@ public class FuncionarioController
         }
     }
 
-    @Override
     public void filtrar() {
         listagem = dao.Buscar(filtro);
     }
 
-    @Override
     public String novo() {
         entidade = new Funcionario();
         return "editarFuncionario.xhtml";
     }
 
-    @Override
     public String excluir() {
         if (dao.Apagar(entidade)) {
             listagem = null;
@@ -77,17 +75,41 @@ public class FuncionarioController
         }
     }
 
-    @Override
     public String abrir() {
         return "editarFuncionario.xhtml";
     }
 
-    @Override
     public String cancelar() {
         return "listagemFuncionario.xhtml";
     }
-    
-    
+
+    public Funcionario getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Funcionario entidade) {
+        this.entidade = entidade;
+    }
+
+    public Funcionario getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(Funcionario filtro) {
+        this.filtro = filtro;
+    }
+
+    public List<Funcionario> getListagem() {
+        if (listagem == null) {
+            listagem = dao.Buscar(null);
+        }
+        return listagem;
+    }
+
+    public void setListagem(List<Funcionario> listagem) {
+        this.listagem = listagem;
+    }
+
     public FuncionarioDAO getDao() {
         return dao;
     }
@@ -133,5 +155,4 @@ public class FuncionarioController
         context.addMessage(null, new FacesMessage(msg));
     }
 
-    
 }
