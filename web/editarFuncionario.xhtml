@@ -11,23 +11,17 @@
 
             <ui:define name="content">
                 <p:tabView>
-                    <p:tab title="Pessoa">
+                    <p:tab title="Dados Pessoais">
                         <p:growl id="mensagens1" />
                         <p:panelGrid columns="2">
                             <f:facet name="header">
                                 Editar Funcionario
                             </f:facet>
                             <br/>
-
-                            Login: <p:inputText value="#{funcionarioController.entidade.login}" 
-                                                required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Senha: <p:password id="feedback" value="#{funcionarioController.entidade.senha}" feedback="true" 
-                                               promptLabel="Insira uma senha" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
-
                             Nome: <p:inputText value="#{funcionarioController.entidade.nome}" 
                                                required="true" requiredMessage="Este campo é obrigatorio"/>
-                            CPF: <p:inputText value="#{funcionarioController.entidade.cpf}" 
-                                              required="true" requiredMessage="Este campo é obrigatorio"/>
+                            CPF: <p:inputMask mask="999.999.999-99" size="20" value="#{funcionarioController.entidade.cpf}" 
+                                              required="true" requiredMessage="O campo cpf deve ser preenchido!" />
                             RG: <p:inputText value="#{funcionarioController.entidade.rg}" 
                                              required="true" requiredMessage="Este campo é obrigatorio"/>
                             <p:outputLabel for="sexo" value="Sexo:" />
@@ -37,19 +31,6 @@
                             </p:selectOneMenu>
                             Data Nascimento: <p:calendar value="#{funcionarioController.entidade.datanasc}" required="true"
                                                          label="Data de Nascimento" pattern="dd/MM/yyyy" />   
-                            <p:outputLabel for="exp" value="Nome Expediente: "/>
-                            <p:selectOneMenu id="exp" value="#{funcionarioController.entidade.expedientenome}"
-                                             required="true" requiredMessage="Este campo é obrigatorio">
-                                <f:selectItem itemLabel="Diurno" itemValue="Diurno" />
-                                <f:selectItem itemLabel="Noturno" itemValue="Noturno" />
-                                <f:selectItem itemLabel="Misto" itemValue="Misto" />
-
-                            </p:selectOneMenu>
-
-                            Inicio : <p:inputText value="#{funcionarioController.entidade.expedienteinicio}"
-                                                  required="true" requiredMessage="Este campo é obrigatorio"/>
-                            Fim : <p:inputText value="#{funcionarioController.entidade.expedientefim}"
-                                               required="true" requiredMessage="Este campo é obrigatorio"/>
 
                             <f:facet name="footer">
                                 <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
@@ -88,8 +69,8 @@
                                 Complemento: <p:inputText value="#{funcionarioController.entidade.endereco.complemento}"/> 
                                 Cidade: <p:inputText value="#{funcionarioController.entidade.endereco.cidade}" 
                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
-                                CEP: <p:inputText value="#{funcionarioController.entidade.endereco.cep}" 
-                                                  required="true" requiredMessage="Este campo é obrigatorio"/>
+                                CEP: <p:inputMask mask="99999-999" value="#{funcionarioController.entidade.endereco.cep}" 
+                                                  required="true" requiredMessage="O campo cep deve ser preenchido!" />
                                 Estado: <p:inputText value="#{funcionarioController.entidade.endereco.estado}" 
                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
                                 País: <p:inputText value="#{funcionarioController.entidade.endereco.pais}" 
@@ -121,8 +102,42 @@
                                 <f:facet name="header">
                                     Editar Email
                                 </f:facet>
-                                Email: <p:inputText value="#{funcionarioController.email.endereco}" 
+                                Email:
+                                <p:inputText value="#{funcionarioController.entidade.email.endereco}" validatorMessage="Insira um e-mail válido"  required="true" requiredMessage="O campo e-mail deve ser preenchido!" >
+                                    <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                </p:inputText>
+                            </p:panelGrid>
+                        </h:panelGrid>
+                    </p:tab>
+
+                    <p:tab title="Usuário">
+                        <h:panelGrid columns="2" cellpadding="10">
+                            <p:growl id="mensagens5" />
+                            <p:panelGrid columns="2">
+                                <f:facet name="header">
+                                    Editar Usuário
+                                </f:facet>
+                                Login: <p:inputText value="#{funcionarioController.entidade.login}" 
                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Senha: <p:password id="senha1" value="#{funcionarioController.entidade.senha}" feedback="true" match="senha2" validatorMessage="As senhas não são iguais!"
+                                                   promptLabel="Insira uma senha" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
+
+                                Confirmar senha: <p:password id="senha2" value="#{funcionarioController.entidade.senha}" feedback="true" 
+                                                             promptLabel="Insira uma senha" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
+                                <p:outputLabel for="exp" value="Nome Expediente: "/>
+                                <p:selectOneMenu id="exp" value="#{funcionarioController.entidade.expedientenome}"
+                                                 required="true" requiredMessage="Este campo é obrigatorio">
+                                    <f:selectItem itemLabel="Diurno" itemValue="Diurno" />
+                                    <f:selectItem itemLabel="Noturno" itemValue="Noturno" />
+                                    <f:selectItem itemLabel="Misto" itemValue="Misto" />
+
+                                </p:selectOneMenu>
+
+                                Inicio : <p:inputText value="#{funcionarioController.entidade.expedienteinicio}"
+                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
+                                Fim : <p:inputText value="#{funcionarioController.entidade.expedientefim}"
+                                                   required="true" requiredMessage="Este campo é obrigatorio"/>
+
                             </p:panelGrid>
                         </h:panelGrid>
                     </p:tab>

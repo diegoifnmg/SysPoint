@@ -20,15 +20,15 @@ import javax.persistence.Id;
 @Entity
 public class Email implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long emailid;
     
-    @Column(name = "endereco", length = 20)
+    @Column(name = "endereco")
     private String endereco;
 
     public Email(Long id, String endereco) {
-        this.emailid = id;
         this.endereco = endereco;
     }
 

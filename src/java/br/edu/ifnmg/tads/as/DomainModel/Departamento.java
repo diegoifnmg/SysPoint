@@ -7,11 +7,14 @@
 package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 /**
@@ -28,17 +31,16 @@ public class Departamento implements Serializable {
     @Column(name="nome", length = 255)
     private String nome;
     
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "permissaoid")
     private Permissao permissao;
 
     public Departamento(Long departamentoid, String nome, Permissao permissao) {
-        this.departamentoid = departamentoid;
         this.nome = nome;
         this.permissao = permissao;
     }
 
     public Departamento() {
-        this.departamentoid = null;
         this.nome = "";
         this.permissao = null;
     }

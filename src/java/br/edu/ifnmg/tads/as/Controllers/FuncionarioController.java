@@ -7,15 +7,14 @@ package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Email;
 import br.edu.ifnmg.tads.as.DomainModel.Endereco;
-import br.edu.ifnmg.tads.as.DomainModel.Expediente;
 import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
+import br.edu.ifnmg.tads.as.DomainModel.IFuncionarioRepositorio;
 import br.edu.ifnmg.tads.as.DomainModel.Telefone;
-import br.edu.ifnmg.tads.as.Infraestrutura.FuncionarioDAO;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
-import javax.faces.application.FacesMessage;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
@@ -27,26 +26,26 @@ import javax.inject.Named;
 @SessionScoped
 public class FuncionarioController implements Serializable {
 
-    /**
-     * Creates a new instance of FuncionarioController
-     */
     Email email;
     Telefone telefone;
     Endereco endereco;
-    Expediente expediente;
-    Funcionario entidade, filtro;
+    Funcionario entidade;
+    Funcionario filtro;
     List<Funcionario> listagem;
-
+    
+    @EJB
+    IFuncionarioRepositorio dao;
+    
+    /**
+     * Creates a new instance of FuncionarioController
+     */
     public FuncionarioController() {
         entidade = new Funcionario();
         filtro = new Funcionario();
         email = new Email();
         telefone = new Telefone();
         endereco = new Endereco();
-        expediente = new Expediente();
     }
-    @EJB
-    FuncionarioDAO dao;
 
     public void salvar() {
         if (dao.Salvar(entidade)) {
@@ -57,6 +56,12 @@ public class FuncionarioController implements Serializable {
         }
     }
 
+    public String criar(){
+        listagem = null;
+        entidade = new Funcionario();
+        return "editarFuncionario.xhtml";
+    }
+    
     public void filtrar() {
         listagem = dao.Buscar(filtro);
     }
@@ -82,6 +87,10 @@ public class FuncionarioController implements Serializable {
     public String cancelar() {
         return "listagemFuncionario.xhtml";
     }
+    
+    public String editar(){
+       return "editarFuncionario.xhtml";
+    }
 
     public Funcionario getEntidade() {
         return entidade;
@@ -100,9 +109,6 @@ public class FuncionarioController implements Serializable {
     }
 
     public List<Funcionario> getListagem() {
-        if (listagem == null) {
-            listagem = dao.Buscar(null);
-        }
         return listagem;
     }
 
@@ -110,11 +116,11 @@ public class FuncionarioController implements Serializable {
         this.listagem = listagem;
     }
 
-    public FuncionarioDAO getDao() {
+    public IFuncionarioRepositorio getDao() {
         return dao;
     }
 
-    public void setDao(FuncionarioDAO dao) {
+    public void setDao(IFuncionarioRepositorio dao) {
         this.dao = dao;
     }
 
@@ -140,14 +146,6 @@ public class FuncionarioController implements Serializable {
 
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
-    }
-
-    public Expediente getExpediente() {
-        return expediente;
-    }
-
-    public void setExpediente(Expediente expediente) {
-        this.expediente = expediente;
     }
 
     public void exibirMensagem(String msg) {

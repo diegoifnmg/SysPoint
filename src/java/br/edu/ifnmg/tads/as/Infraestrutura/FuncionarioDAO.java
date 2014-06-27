@@ -7,6 +7,7 @@
 package br.edu.ifnmg.tads.as.Infraestrutura;
 
 import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
+import br.edu.ifnmg.tads.as.DomainModel.IFuncionarioRepositorio;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -15,8 +16,8 @@ import javax.persistence.Query;
  *
  * @author MAIKE
  */
-@Stateless
-public class FuncionarioDAO extends GenericoDAO<Funcionario>{
+@Stateless(name = "IFuncionarioRepositorio")
+public class FuncionarioDAO extends GenericoDAO<Funcionario> implements IFuncionarioRepositorio{
 
     public FuncionarioDAO() {
         super(Funcionario.class);
@@ -24,9 +25,9 @@ public class FuncionarioDAO extends GenericoDAO<Funcionario>{
 
     @Override
     public List<Funcionario> Buscar(Funcionario obj) {
-        String Consulta = "select l from Funcionario l";
+        String Consulta = "select f from Funcionario f";
         if (obj != null) {
-            Consulta = Consulta + " where l.nome like '%" + obj.getNome() + "%'";
+            Consulta = Consulta + " where f.nome like '%" + obj.getNome() + "%'";
         }
         Query q = manager.createQuery(Consulta);
         return q.getResultList();

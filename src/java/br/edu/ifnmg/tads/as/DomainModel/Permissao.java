@@ -19,22 +19,23 @@ import javax.persistence.Id;
 @Entity
 public class Permissao implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long permissaoid;
 
-    public Long getId() {
-        return id;
+    public Long getPermissaoid() {
+        return permissaoid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setPermissaoid(Long permissaoid) {
+        this.permissaoid = permissaoid;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (permissaoid != null ? permissaoid.hashCode() : 0);
         return hash;
     }
 
@@ -45,7 +46,7 @@ public class Permissao implements Serializable {
             return false;
         }
         Permissao other = (Permissao) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.permissaoid == null && other.permissaoid != null) || (this.permissaoid != null && !this.permissaoid.equals(other.permissaoid))) {
             return false;
         }
         return true;
@@ -53,7 +54,7 @@ public class Permissao implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.as.DomainModel.Permissao[ id=" + id + " ]";
+        return "br.edu.ifnmg.tads.as.DomainModel.Permissao[ id=" + permissaoid + " ]";
     }
     
 }
