@@ -33,7 +33,6 @@ public class Email implements Serializable {
     }
 
     public Email() {
-        this.emailid = null;
         this.endereco = "";
     }
 
