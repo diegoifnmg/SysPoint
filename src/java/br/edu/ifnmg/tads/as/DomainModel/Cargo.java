@@ -8,6 +8,7 @@ package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -32,8 +33,18 @@ public class Cargo implements Serializable {
     @Column(name="salario")
     private Double salario;
     
-    @OneToMany
-    private List<Permissao> permissao;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
+    private List<Departamento> departamentos;
+
+    public Cargo() {
+    }
+
+    public Cargo(Long cargoid, String nome, Double salario, List<Departamento> departamentos) {
+        this.cargoid = cargoid;
+        this.nome = nome;
+        this.salario = salario;
+        this.departamentos = departamentos;
+    }
 
     public String getNome() {
         return nome;
@@ -51,14 +62,14 @@ public class Cargo implements Serializable {
         this.salario = salario;
     }
 
-    public List<Permissao> getPermissao() {
-        return permissao;
+    public List<Departamento> getDepartamentos() {
+        return departamentos;
     }
 
-    public void setPermissao(List<Permissao> permissao) {
-        this.permissao = permissao;
+    public void setDepartamentos(List<Departamento> departamentos) {
+        this.departamentos = departamentos;
     }
-    
+
     public Long getCargoid() {
         return cargoid;
     }
@@ -67,17 +78,20 @@ public class Cargo implements Serializable {
         this.cargoid = cargoid;
     }
 
-    public void addPermissao(Permissao p){
-        if(!permissao.contains(p)){
-            permissao.add(p);
+    public void add(Departamento e){
+        e.setDepartamentoid(this);
+        if(!departamentos.contains(e)){
+            departamentos.add(e);
         }
     }
     
-    public void removePermissao(Permissao p){
-        if(permissao.contains(p)){
-            permissao.remove(p);
+    public void remove(Email e){
+        if(departamentos.contains(e)){
+            departamentos.remove(e);
         }
     }
+    
+    
     
     @Override
     public int hashCode() {
