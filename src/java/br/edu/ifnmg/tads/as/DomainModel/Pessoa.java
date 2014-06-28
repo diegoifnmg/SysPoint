@@ -55,15 +55,15 @@ public class Pessoa implements Serializable {
     @Column(name = "senha", length = 255)
     private String senha;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "emailid")
     private Email email;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "telefoneid")
     private Telefone telefone;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "enderecoid")
     private Endereco endereco;
 
