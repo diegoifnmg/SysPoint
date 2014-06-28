@@ -5,8 +5,8 @@
  */
 package br.edu.ifnmg.tads.as.Controllers;
 
-import br.edu.ifnmg.tads.as.DomainModel.Expediente;
-import br.edu.ifnmg.tads.as.Infraestrutura.ExpedienteDAO;
+import br.edu.ifnmg.tads.as.DomainModel.Cargo;
+import br.edu.ifnmg.tads.as.Infraestrutura.CargoDAO;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -19,15 +19,15 @@ import javax.faces.convert.Converter;
  * @author Maike Jordan
  */
 @SessionScoped
-public class ExpedienteConverter implements Serializable, Converter {
+public class CargoConverter implements Serializable, Converter {
 
     /**
      * Creates a new instance of ExpedienteConverter
      */
     @EJB
-    ExpedienteDAO dao;
+    CargoDAO dao;
 
-    public ExpedienteConverter() {
+    public CargoConverter() {
     }
 
     @Override
@@ -45,8 +45,8 @@ public class ExpedienteConverter implements Serializable, Converter {
         if (value == null || value.toString().equals("")) {
             return "";
         } else {
-            Expediente e = (Expediente) value;
-            return e.getId().toString();
+            Cargo c = (Cargo) value;
+            return c.getCargoid().toString();
         }
     }
 
