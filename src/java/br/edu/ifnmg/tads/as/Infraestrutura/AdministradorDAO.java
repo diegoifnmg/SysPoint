@@ -27,7 +27,7 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
     public List<Administrador> Buscar(Administrador obj) {
         String Consulta = "select a from Administrador a";
         if (obj != null) {
-            Consulta = Consulta + " where f.nome like '%" + obj.getNome() + "%'";
+            Consulta = Consulta + " where a.nome like '%" + obj.getNome() + "%'";
         }
         Query q = manager.createQuery(Consulta);
         return q.getResultList();

@@ -22,8 +22,8 @@
                                                required="true" requiredMessage="Este campo é obrigatorio"/>
                             CPF: <p:inputMask mask="999.999.999-99" size="20" value="#{administradorController.entidade.cpf}" 
                                               required="true" requiredMessage="O campo cpf deve ser preenchido!" />
-                            RG: <p:inputText value="#{administradorController.entidade.rg}" 
-                                             required="true" requiredMessage="Este campo é obrigatorio"/>
+                            RG: <p:inputMask  mask="99.999.999" size="20" value="#{administradorController.entidade.rg}" 
+                                             required="true"  requiredMessage="Este campo é obrigatorio"/>
                             <p:outputLabel for="sexo" value="Sexo:" />
                             <p:selectOneMenu id="sexo" value="#{administradorController.entidade.sexo}">
                                 <f:selectItem itemLabel="Masculino" itemValue="M" />

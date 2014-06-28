@@ -23,12 +23,12 @@
                 </p:panelGrid>
                 <br />
 
-                <p:dataTable style="text-align: center" value="#{administradorController.listagem}" var="funcionario" emptyMessage="Registros não encontrados!">
+                <p:dataTable style="text-align: center" value="#{administradorController.listagem}" var="administrador" emptyMessage="Registros não encontrados!">
                     <p:column sortBy="Id" headerText="Id" > #{administrador.id}</p:column>
                     <p:column sortBy="nome" headerText="Nome" >#{administrador.nome}</p:column>
                     <p:column sortBy="rg" headerText="Rg" >#{administrador.rg}</p:column>
                     <p:column sortBy="cpf" headerText="Cpf" >#{administrador.cpf}</p:column>
-                    <p:column sortBy="telefone" headerText="Telefone" >#{administrador.telefone}</p:column>
+                    <p:column sortBy="telefone" headerText="Telefone" >#{administrador.telefone.ddd}  #{administrador.telefone.numero} </p:column>
                     <p:column sortBy="email" headerText="E-mail" > #{administrador.email}</p:column>
 
                     <p:column >
