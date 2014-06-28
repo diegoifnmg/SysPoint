@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,11 +18,18 @@ import javax.persistence.Id;
  */
 @Entity
 public class Permissao implements Serializable {
+
     private static final long serialVersionUID = 1L;
-    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long permissaoid;
+
+    public Permissao() {
+    }
+
+    public Permissao(Long permissaoid) {
+        this.permissaoid = permissaoid;
+    }
 
     public Long getPermissaoid() {
         return permissaoid;
@@ -34,19 +41,21 @@ public class Permissao implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (permissaoid != null ? permissaoid.hashCode() : 0);
+        int hash = 7;
+        hash = 53 * hash + Objects.hashCode(this.permissaoid);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Permissao)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Permissao other = (Permissao) object;
-        if ((this.permissaoid == null && other.permissaoid != null) || (this.permissaoid != null && !this.permissaoid.equals(other.permissaoid))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Permissao other = (Permissao) obj;
+        if (!Objects.equals(this.permissaoid, other.permissaoid)) {
             return false;
         }
         return true;
@@ -56,5 +65,4 @@ public class Permissao implements Serializable {
     public String toString() {
         return "br.edu.ifnmg.tads.as.DomainModel.Permissao[ id=" + permissaoid + " ]";
     }
-    
 }

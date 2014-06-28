@@ -28,9 +28,9 @@
                     <p:column sortBy="nome" headerText="Nome" >#{funcionario.nome}</p:column>
                     <p:column sortBy="rg" headerText="Rg" >#{funcionario.rg}</p:column>
                     <p:column sortBy="cpf" headerText="Cpf" >#{funcionario.cpf}</p:column>
-                    <p:column sortBy="telefone" headerText="Telefone" >#{funcionario.telefone}</p:column>
+                    <p:column sortBy="telefone" headerText="Telefone" >#{funcionario.telefone.ddd}  #{funcionario.telefone.numero} </p:column>
                     <p:column sortBy="email" headerText="E-mail" > #{funcionario.email}</p:column>
-
+                    <p:column sortBy="expediente" headerText="Expediente" > #{funcionario.expedientenome}</p:column>        
                     <p:column >
                         <p:commandButton value="Editar" ajax="false" action="#{funcionarioController.editar()}">
                             <f:setPropertyActionListener target="#{funcionarioController.entidade}" value="#{funcionario}" />

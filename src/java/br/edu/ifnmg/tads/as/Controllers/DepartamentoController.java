@@ -7,13 +7,13 @@ package br.edu.ifnmg.tads.as.Controllers;
 import br.edu.ifnmg.tads.as.DomainModel.Departamento;
 import br.edu.ifnmg.tads.as.DomainModel.IDepartamentoRepositorio;
 import br.edu.ifnmg.tads.as.DomainModel.Permissao;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  *
@@ -23,30 +23,29 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class DepartamentoController implements Serializable {
 
-    /**
-     * Creates a new instance of DepartamentoController
-     */
-    
+    Permissao permissao;
     Departamento entidade;
     Departamento filtro;
     List<Departamento> listagem;
-    Permissao permissao;
     
     @EJB
     IDepartamentoRepositorio dao;
-    
+
+    /**
+     * Creates a new instance of DepartamentoController
+     */
     public DepartamentoController() {
         entidade = new Departamento();
         filtro = new Departamento();
         permissao = new Permissao();
-        
+
     }
-    
+
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(msg));
     }
-    
+
     public void salvar() {
         if (dao.Salvar(entidade)) {
             exibirMensagem("Salvo com sucesso!");
@@ -56,12 +55,12 @@ public class DepartamentoController implements Serializable {
         }
     }
 
-    public String criar(){
+    public String criar() {
         listagem = null;
         entidade = new Departamento();
         return "editarDepartamento.xhtml";
     }
-    
+
     public void filtrar() {
         listagem = dao.Buscar(filtro);
     }
@@ -87,9 +86,9 @@ public class DepartamentoController implements Serializable {
     public String cancelar() {
         return "listagemDepartamento.xhtml";
     }
-    
-    public String editar(){
-       return "editarDepartamento.xhtml";
+
+    public String editar() {
+        return "editarDepartamento.xhtml";
     }
 
     public Permissao getPermissao() {
@@ -131,5 +130,4 @@ public class DepartamentoController implements Serializable {
     public void setListagem(List<Departamento> listagem) {
         this.listagem = listagem;
     }
-    
 }
