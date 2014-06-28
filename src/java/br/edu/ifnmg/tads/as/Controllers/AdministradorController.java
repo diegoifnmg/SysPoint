@@ -7,11 +7,10 @@ package br.edu.ifnmg.tads.as.Controllers;
 import br.edu.ifnmg.tads.as.DomainModel.Administrador;
 import br.edu.ifnmg.tads.as.DomainModel.Email;
 import br.edu.ifnmg.tads.as.DomainModel.Endereco;
-import br.edu.ifnmg.tads.as.DomainModel.Expediente;
+import br.edu.ifnmg.tads.as.DomainModel.IAdministradorRepositorio;
 import br.edu.ifnmg.tads.as.DomainModel.Telefone;
-import br.edu.ifnmg.tads.as.Infraestrutura.AdministradorDAO;
-import br.edu.ifnmg.tads.as.Infraestrutura.FuncionarioDAO;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.enterprise.context.SessionScoped;
@@ -26,25 +25,27 @@ import javax.inject.Named;
 @SessionScoped
 public class AdministradorController extends ControllerGenerico<Administrador> implements Serializable{
 
-    
-
     Email email;
     Telefone telefone;
     Endereco endereco;
-    Expediente expediente;
-
+    Administrador entidade;
+    Administrador filtro;
+    List<Administrador> listagem;
+    
+    @EJB
+    IAdministradorRepositorio dao;
+    
+    /**
+     * Creates a new instance of FuncionarioController
+     */
     public AdministradorController() {
         entidade = new Administrador();
         filtro = new Administrador();
         email = new Email();
         telefone = new Telefone();
         endereco = new Endereco();
-        expediente = new Expediente();
     }
-    @EJB
-    AdministradorDAO dao;
 
-    @Override
     public void salvar() {
         if (dao.Salvar(entidade)) {
             exibirMensagem("Salvo com sucesso!");
@@ -54,18 +55,21 @@ public class AdministradorController extends ControllerGenerico<Administrador> i
         }
     }
 
-    @Override
+    public String criar(){
+        listagem = null;
+        entidade = new Administrador();
+        return "editarFuncionario.xhtml";
+    }
+    
     public void filtrar() {
         listagem = dao.Buscar(filtro);
     }
 
-    @Override
     public String novo() {
         entidade = new Administrador();
         return "editarAdministrador.xhtml";
     }
 
-    @Override
     public String excluir() {
         if (dao.Apagar(entidade)) {
             listagem = null;
@@ -75,22 +79,47 @@ public class AdministradorController extends ControllerGenerico<Administrador> i
         }
     }
 
-    @Override
     public String abrir() {
         return "editarAdministrador.xhtml";
     }
 
-    @Override
     public String cancelar() {
         return "listagemAdministrador.xhtml";
     }
     
-    
-    public AdministradorDAO getDao() {
+    public String editar(){
+       return "editarAdministrador.xhtml";
+    }
+
+    public Administrador getEntidade() {
+        return entidade;
+    }
+
+    public void setEntidade(Administrador entidade) {
+        this.entidade = entidade;
+    }
+
+    public Administrador getFiltro() {
+        return filtro;
+    }
+
+    public void setFiltro(Administrador filtro) {
+        this.filtro = filtro;
+    }
+
+    public List<Administrador> getListagem() {
+        return listagem;
+    }
+
+    public void setListagem(List<Administrador> listagem) {
+        this.listagem = listagem;
+    }
+
+    public IAdministradorRepositorio getDao() {
         return dao;
     }
 
-    public void setDao(AdministradorDAO dao) {
+    public void setDao(IAdministradorRepositorio dao) {
         this.dao = dao;
     }
 
@@ -118,18 +147,9 @@ public class AdministradorController extends ControllerGenerico<Administrador> i
         this.endereco = endereco;
     }
 
-    public Expediente getExpediente() {
-        return expediente;
-    }
-
-    public void setExpediente(Expediente expediente) {
-        this.expediente = expediente;
-    }
-
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(msg));
     }
 
-    
 }
