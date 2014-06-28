@@ -7,13 +7,13 @@ package br.edu.ifnmg.tads.as.Controllers;
 import br.edu.ifnmg.tads.as.DomainModel.Departamento;
 import br.edu.ifnmg.tads.as.DomainModel.IDepartamentoRepositorio;
 import br.edu.ifnmg.tads.as.DomainModel.Permissao;
-import javax.inject.Named;
-import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.inject.Named;
 
 /**
  *
@@ -23,17 +23,17 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class DepartamentoController implements Serializable {
 
-    /**
-     * Creates a new instance of DepartamentoController
-     */
     Permissao permissao;
     Departamento entidade;
     Departamento filtro;
     List<Departamento> listagem;
-
+    
     @EJB
     IDepartamentoRepositorio dao;
 
+    /**
+     * Creates a new instance of DepartamentoController
+     */
     public DepartamentoController() {
         entidade = new Departamento();
         filtro = new Departamento();

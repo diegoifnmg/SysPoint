@@ -4,10 +4,13 @@
  */
 package br.edu.ifnmg.tads.as.DomainModel;
 
+import javax.ejb.Remote;
+
 /**
  *
  * @author Maike
  */
+@Remote
 public interface IDepartamentoRepositorio extends RepositorioGenerico<Departamento> {
     
 }

@@ -7,13 +7,12 @@
 package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 
 /**
  *
@@ -28,35 +27,13 @@ public class Departamento implements Serializable {
     
     @Column(name="nome", length = 255)
     private String nome;
-    
-    @OneToOne
-    @JoinColumn(name = "permissaoid")
-    private Permissao permissao;
 
-    public Departamento(Long departamentoid, String nome, Permissao permissao) {
+    public Departamento(String nome) {
         this.nome = nome;
-        this.permissao = permissao;
     }
 
     public Departamento() {
         this.nome = "";
-        this.permissao = null;
-    }
-    
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public Permissao getPermissao() {
-        return permissao;
-    }
-
-    public void setPermissao(Permissao permissao) {
-        this.permissao = permissao;
     }
     
     public Long getDepartamentoid() {
@@ -67,29 +44,43 @@ public class Departamento implements Serializable {
         this.departamentoid = departamentoid;
     }
 
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (departamentoid != null ? departamentoid.hashCode() : 0);
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.departamentoid);
+        hash = 29 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Departamento)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Departamento other = (Departamento) object;
-        if ((this.departamentoid == null && other.departamentoid != null) || (this.departamentoid != null && !this.departamentoid.equals(other.departamentoid))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Departamento other = (Departamento) obj;
+        if (!Objects.equals(this.departamentoid, other.departamentoid)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         return true;
     }
-
+    
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.as.DomainModel.Departamento[ id=" + departamentoid + " ]";
+        return nome;
     }
     
 }
