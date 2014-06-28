@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
@@ -22,17 +21,15 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Cargo implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long cargoid;
-    
-    @Column(name="nome", length = 255)
+    @Column(name = "nome", length = 255)
     private String nome;
-    
-    @Column(name="salario")
+    @Column(name = "salario")
     private Double salario;
-    
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "departamento")
     private List<Departamento> departamentos;
 
@@ -78,21 +75,19 @@ public class Cargo implements Serializable {
         this.cargoid = cargoid;
     }
 
-    public void add(Departamento e){
-        e.setDepartamentoid(this);
-        if(!departamentos.contains(e)){
+    public void add(Departamento e) {
+        e.setCargos(this);
+        if (!departamentos.contains(e)) {
             departamentos.add(e);
         }
     }
-    
-    public void remove(Email e){
-        if(departamentos.contains(e)){
+
+    public void remove(Departamento e) {
+        if (departamentos.contains(e)) {
             departamentos.remove(e);
         }
     }
-    
-    
-    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -117,5 +112,4 @@ public class Cargo implements Serializable {
     public String toString() {
         return "br.edu.ifnmg.tads.as.DomainModel.Cargo[ id=" + cargoid + " ]";
     }
-    
 }

@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
@@ -13,6 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -20,22 +20,34 @@ import javax.persistence.Id;
  */
 @Entity
 public class Departamento implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long departamentoid;
-    
-    @Column(name="nome", length = 255)
+    @ManyToOne
+    private Cargo cargos;
+    @Column(name = "nome", length = 255)
     private String nome;
 
-    public Departamento(String nome) {
+    public Departamento(Cargo cargos, String nome) {
+        this.cargos = cargos;
         this.nome = nome;
     }
 
     public Departamento() {
+        this.cargos = null;
         this.nome = "";
     }
-    
+
+    public Cargo getCargos() {
+        return cargos;
+    }
+
+    public void setCargos(Cargo cargos) {
+        this.cargos = cargos;
+    }
+
     public Long getDepartamentoid() {
         return departamentoid;
     }
@@ -55,8 +67,9 @@ public class Departamento implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.departamentoid);
-        hash = 29 * hash + Objects.hashCode(this.nome);
+        hash = 61 * hash + Objects.hashCode(this.departamentoid);
+        hash = 61 * hash + Objects.hashCode(this.cargos);
+        hash = 61 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -72,15 +85,17 @@ public class Departamento implements Serializable {
         if (!Objects.equals(this.departamentoid, other.departamentoid)) {
             return false;
         }
+        if (!Objects.equals(this.cargos, other.cargos)) {
+            return false;
+        }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
         return true;
     }
-    
+
     @Override
     public String toString() {
         return nome;
     }
-    
 }

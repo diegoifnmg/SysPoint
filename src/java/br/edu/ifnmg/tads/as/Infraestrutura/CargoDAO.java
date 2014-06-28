@@ -5,7 +5,7 @@
 package br.edu.ifnmg.tads.as.Infraestrutura;
 
 import br.edu.ifnmg.tads.as.DomainModel.Cargo;
-import br.edu.ifnmg.tads.as.DomainModel.IDepartamentoRepositorio;
+import br.edu.ifnmg.tads.as.DomainModel.ICargoRepositorio;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -15,7 +15,7 @@ import javax.persistence.Query;
  * @author Diego
  */
 @Stateless(name = "ICargoRepositorio")
-public class CargoDAO extends GenericoDAO<Cargo> implements IDepartamentoRepositorio{
+public class CargoDAO extends GenericoDAO<Cargo> implements ICargoRepositorio{
     
     public CargoDAO() {
         super(Cargo.class);
