@@ -6,7 +6,6 @@ package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Departamento;
 import br.edu.ifnmg.tads.as.DomainModel.IDepartamentoRepositorio;
-import br.edu.ifnmg.tads.as.DomainModel.Permissao;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
@@ -23,7 +22,7 @@ import javax.inject.Named;
 @SessionScoped
 public class DepartamentoController implements Serializable {
 
-    Permissao permissao;
+    
     Departamento entidade;
     Departamento filtro;
     List<Departamento> listagem;
@@ -37,8 +36,6 @@ public class DepartamentoController implements Serializable {
     public DepartamentoController() {
         entidade = new Departamento();
         filtro = new Departamento();
-        permissao = new Permissao();
-
     }
 
     public void exibirMensagem(String msg) {
@@ -89,14 +86,6 @@ public class DepartamentoController implements Serializable {
 
     public String editar() {
         return "editarDepartamento.xhtml";
-    }
-
-    public Permissao getPermissao() {
-        return permissao;
-    }
-
-    public void setPermissao(Permissao permissao) {
-        this.permissao = permissao;
     }
 
     public IDepartamentoRepositorio getDao() {
