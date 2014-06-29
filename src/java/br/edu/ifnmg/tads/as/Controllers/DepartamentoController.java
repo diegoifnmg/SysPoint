@@ -22,7 +22,6 @@ import javax.inject.Named;
 @SessionScoped
 public class DepartamentoController implements Serializable {
 
-    
     Departamento entidade;
     Departamento filtro;
     List<Departamento> listagem;
@@ -118,5 +117,10 @@ public class DepartamentoController implements Serializable {
 
     public void setListagem(List<Departamento> listagem) {
         this.listagem = listagem;
+    }
+
+    public List<Departamento> listarTodos() {
+        listagem = dao.Buscar(filtro);
+        return listagem;
     }
 }

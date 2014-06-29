@@ -13,26 +13,21 @@
 
             <ui:define name="content">
                 <p:tabView>
-                    <p:tab title="Dados Pessoais">
+                    <p:tab title="Editar">
                         <p:growl id="mensagens1" />
                         <p:panelGrid columns="2">
                             <f:facet name="header">
-                                Editar Funcionario
+                                Editar Cargo
                             </f:facet>
                             <br/>
-                            Nome: <p:inputText value="#{funcionarioController.entidade.nome}" 
+                            Nome: <p:inputText value="#{cargoController.entidade.nome}" 
                                                required="true" requiredMessage="Este campo é obrigatorio"/>
-                            CPF: <p:inputMask mask="999.999.999-99" size="20" value="#{funcionarioController.entidade.cpf}" 
-                                              required="true" requiredMessage="O campo cpf deve ser preenchido!" />
-                            RG: <p:inputText value="#{funcionarioController.entidade.rg}" 
-                                             required="true" requiredMessage="Este campo é obrigatorio"/>
-                            <p:outputLabel for="sexo" value="Sexo:" />
-                            <p:selectOneMenu id="sexo" value="#{funcionarioController.entidade.sexo}">
-                                <f:selectItem itemLabel="Masculino" itemValue="M" />
-                                <f:selectItem itemLabel="Feminino" itemValue="F" />
-                            </p:selectOneMenu>
-                            Data Nascimento: <p:calendar value="#{funcionarioController.entidade.datanasc}" required="true"
-                                                         label="Data de Nascimento" pattern="dd/MM/yyyy" />   
+                            Salario: <p:inputText value="#{cargoController.entidade.salario}" 
+                                                  required="true" requiredMessage="Este campo é obrigatorio!" />
+                            Departamento: <p:selectOneMenu value="#{cargoController.entidade.departamentos}" converter="#{departamentoConverter}">
+                                                <f:selectItem itemLabel="Selecione" itemValue="" />
+                                                <f:selectItems value="#{departamentoController.listarTodos()}" />
+                                          </p:selectOneMenu>
 
                             <f:facet name="footer">
                                 <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>

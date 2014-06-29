@@ -7,10 +7,8 @@ package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
 import java.util.List;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -33,8 +31,7 @@ public class Cargo implements Serializable {
     @Column(name = "salario")
     private Double salario;
     
-    @OneToMany(cascade= CascadeType.ALL, fetch= FetchType.LAZY)
-    @JoinColumn(name="departamentoid") 
+    @OneToMany
     private List<Departamento> departamentos;
 
     public Cargo() {
@@ -80,7 +77,6 @@ public class Cargo implements Serializable {
     }
 
     public void add(Departamento e) {
-        e.setCargos(this);
         if (!departamentos.contains(e)) {
             departamentos.add(e);
         }
@@ -114,6 +110,6 @@ public class Cargo implements Serializable {
 
     @Override
     public String toString() {
-        return "br.edu.ifnmg.tads.as.DomainModel.Cargo[ id=" + cargoid + " ]";
+        return nome;
     }
 }

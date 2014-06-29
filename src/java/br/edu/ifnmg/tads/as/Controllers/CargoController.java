@@ -6,7 +6,6 @@ package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Cargo;
 import br.edu.ifnmg.tads.as.DomainModel.Departamento;
-import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.as.DomainModel.ICargoRepositorio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
