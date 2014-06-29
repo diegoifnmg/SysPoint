@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./Global.xhtml">
+
+            <ui:define name="content">
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Nome"/>
+                    <p:inputText value="#{cargoController.filtro.nome}"/>
+                    <f:facet name="footer"> 
+                        <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-check" action="#{cargoController.filtrar()}"/>  
+                        <p:commandButton ajax="false" value="Novo Cargo" action="#{cargoController.novo()}" />
+                    </f:facet>
+
+                </p:panelGrid>
+                <p:dataTable id="listagem" value="#{cargoController.listagem}" var="item">
+                    <p:column sortBy="id" headerText="Cod">
+                        #{item.cargoid}
+                    </p:column> 
+
+                    <p:column sortBy="nome" headerText="Nome">
+                        #{item.nome}
+                    </p:column>
+
+                    <p:column>
+                        <p:commandButton value="Editar" action="editarCargo.xhtml">
+                            <f:setPropertyActionListener target="#{cargoController.entidade}" value="#{item}"/>
+                        </p:commandButton>
+                    </p:column>
+                </p:dataTable>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
