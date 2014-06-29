@@ -130,7 +130,7 @@ public class CargoController implements Serializable {
     
     public void addDepartamento() {
         entidade.add(departamento);
-        if (dao.Salvar(entidade)) {
+        if (entidade.getDepartamentos() != null) {
             exibirMensagem("Departamento adicionado com sucesso!");
             departamento = new Departamento();
         } else {
@@ -140,7 +140,7 @@ public class CargoController implements Serializable {
 
     public void removeDepartamento() {
         entidade.remove(departamento);
-        if (dao.Salvar(entidade)) {
+        if (entidade.getDepartamentos() == null) {
             exibirMensagem("Departamento removido com sucesso!");
             departamento = new Departamento();
         } else {

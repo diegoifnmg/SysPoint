@@ -15,43 +15,36 @@
                 <p:tabView>
                     <p:tab title="Editar">
                         <p:growl id="mensagens1" />
-                        <p:panelGrid columns="2">
+                        <p:panelGrid columns="3">
                             <f:facet name="header">
                                 Editar Cargo
                             </f:facet>
                             <br/>
                             Nome: <p:inputText value="#{cargoController.entidade.nome}" 
                                                required="true" requiredMessage="Este campo é obrigatorio"/>
-
+                            <p:outputLabel></p:outputLabel>
                             Salario: <p:inputText value="#{cargoController.entidade.salario}" 
                                                   required="true" requiredMessage="Este campo é obrigatorio!" />
-
+                            <p:outputLabel></p:outputLabel>
                             Departamento: 
-                            <!--
-                            <p:selectOneMenu value="#{cargoController.entidade.departamentos}" converter="#{departamentoConverter}" id="departamentoselecionado">
-                                <f:selectItem itemLabel="Selecione" itemValue="" id="teste"/>
+                            <p:selectOneMenu id="departamentoselecionados" value="#{cargoController.entidade.departamentos}" converter="#{departamentoConverter}">
+                                <f:selectItem itemLabel="Selecione" itemValue=""/>
                                 <f:selectItems value="#{departamentoController.listarTodos()}" />
 
                             </p:selectOneMenu>
-                            -->  
-                            <p:selectManyCheckbox id="departamento" value="#{cargoController.entidade.departamentos}" 
-                                                converter="#{departamentoConverter}" layout="pageDirection" >
-                                <f:selectItems value="#{departamentoController.listarTodos()}" var="c" itemLabel="#{departamento}" itemValue="#{city}"/>
-                            </p:selectManyCheckbox>
+                            <p:commandButton  ajax="false" value="Adicionar" action="#{cargoController.addDepartamento()}" />
 
+                            <p:outputLabel></p:outputLabel>
 
-                            <!--
-                                                        <p:commandButton  ajax="false" value="Adicionar" action="#{cargoController.addDepartamento()}" />
-                            
-                                                        <p:dataTable value="#{cargoController.entidade.departamentos}" var="item" style="size: letter">
-                                                            <p:column  headerText="Departamento">
-                            #{item.nome}
-                            <p:commandButton ajax="false" value="Remover" action="#{cargoController.removeDepartamento()}">
-                                <f:setPropertyActionListener target="#{cargoController.entidade.departamentos}" value="#{item}" />
-                            </p:commandButton>
-                        </p:column>
-                    </p:dataTable>
-                            -->
+                            <p:dataTable value="#{cargoController.entidade.departamentos}" var="item" style="size: letter">
+                                <p:column  headerText="Departamento">
+                                    #{item.nome}
+                                    <p:commandButton ajax="false" value="Remover" action="#{cargoController.removeDepartamento()}">
+                                        <f:setPropertyActionListener target="#{cargoController.entidade.departamentos}" value="#{item}" />
+                                    </p:commandButton>
+                                </p:column>
+                            </p:dataTable>
+
                             <p:outputLabel></p:outputLabel>
 
                             <f:facet name="footer">
