@@ -6,7 +6,6 @@ package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Cargo;
 import br.edu.ifnmg.tads.as.DomainModel.Departamento;
-import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.as.DomainModel.ICargoRepositorio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -28,7 +27,7 @@ public class CargoController implements Serializable {
      */
     
     ICargoRepositorio dao;
-    List<Departamento> departamentos;
+    Departamento departamento;
     Cargo entidade;
     Cargo filtro;
     List<Cargo> listagem;
@@ -108,12 +107,12 @@ public class CargoController implements Serializable {
         this.dao = dao;
     }
 
-    public List<Departamento> getDepartamentos() {
-        return departamentos;
+    public Departamento getDepartamento() {
+        return departamento;
     }
 
-    public void setDepartamentos(List<Departamento> departamentos) {
-        this.departamentos = departamentos;
+    public void setDepartamento(Departamento departamento) {
+        this.departamento = departamento;
     }
 
     public List<Cargo> getListagem() {
@@ -129,6 +128,24 @@ public class CargoController implements Serializable {
         context.addMessage(null, new FacesMessage(msg));
     }
     
-    
-    
+    public void addDepartamento() {
+        entidade.add(departamento);
+        if (dao.Salvar(entidade)) {
+            exibirMensagem("Departamento adicionado com sucesso!");
+            departamento = new Departamento();
+        } else {
+            exibirMensagem("Falha ao adicionar e-mail!");
+        }
+    }
+
+    public void removeDepartamento() {
+        entidade.remove(departamento);
+        if (dao.Salvar(entidade)) {
+            exibirMensagem("Departamento removido com sucesso!");
+            departamento = new Departamento();
+        } else {
+            exibirMensagem("Falha ao remover Departamento!");
+        }
+    }
+
 }

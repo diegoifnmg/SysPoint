@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 /**
  *
@@ -25,27 +24,16 @@ public class Departamento implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long departamentoid;
-    @ManyToOne
-    private Cargo cargos;
+    
     @Column(name = "nome", length = 255)
     private String nome;
 
-    public Departamento(Cargo cargos, String nome) {
-        this.cargos = cargos;
+    public Departamento(String nome) {
         this.nome = nome;
     }
 
     public Departamento() {
-        this.cargos = null;
         this.nome = "";
-    }
-
-    public Cargo getCargos() {
-        return cargos;
-    }
-
-    public void setCargos(Cargo cargos) {
-        this.cargos = cargos;
     }
 
     public Long getDepartamentoid() {
@@ -67,9 +55,8 @@ public class Departamento implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + Objects.hashCode(this.departamentoid);
-        hash = 61 * hash + Objects.hashCode(this.cargos);
-        hash = 61 * hash + Objects.hashCode(this.nome);
+        hash = 67 * hash + Objects.hashCode(this.departamentoid);
+        hash = 67 * hash + Objects.hashCode(this.nome);
         return hash;
     }
 
@@ -83,9 +70,6 @@ public class Departamento implements Serializable {
         }
         final Departamento other = (Departamento) obj;
         if (!Objects.equals(this.departamentoid, other.departamentoid)) {
-            return false;
-        }
-        if (!Objects.equals(this.cargos, other.cargos)) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
