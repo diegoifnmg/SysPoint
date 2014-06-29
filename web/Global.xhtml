@@ -18,18 +18,20 @@
         
         <h:form>
             <div id="top">
-            <img src="./resources/Imagens/Logo.png"></img>
+                <img src="./resources/Imagens/Logo.png" ></img>
             </div>
            
             <p:growl id="messages"/>
             <p:menubar>
+                <p:menuitem value="Home" url="index.xhtml" />
+                    
+                
                 <p:submenu label="Cadastro" icon="ui-icon-document">
-                    <p:menuitem value="Administrador" url="listagemAdministrador.xhtml" />
-                    <p:menuitem value="Funcionário" url="listagemFuncionario.xhtml" />
+                    <p:menuitem value="Administradores" url="listagemAdministrador.xhtml" />
+                    <p:menuitem value="Funcionários" url="listagemFuncionario.xhtml" />
                     <p:menuitem value="Cargos" url="listagemCargo.xhtml"/>
                     <p:menuitem value="Departamentos" url="listagemDepartamento.xhtml"/>
-                    <p:separator />
-                    <p:menuitem value="Quit" url="#" />
+                    
                 </p:submenu>
 
                 <p:submenu label="Edit" icon="ui-icon-pencil">
