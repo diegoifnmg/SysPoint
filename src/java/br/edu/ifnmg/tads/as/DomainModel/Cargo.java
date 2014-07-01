@@ -6,14 +6,14 @@
 package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToMany;
 
 /**
  *
@@ -31,10 +31,11 @@ public class Cargo implements Serializable {
     @Column(name = "salario")
     private Double salario;
     
-    @OneToMany
+    @ManyToMany
     private List<Departamento> departamentos;
 
     public Cargo() {
+        departamentos = new ArrayList<>();
     }
 
     public Cargo(Long cargoid, String nome, Double salario, List<Departamento> departamentos) {

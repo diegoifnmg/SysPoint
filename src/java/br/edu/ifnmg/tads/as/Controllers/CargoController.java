@@ -41,7 +41,6 @@ public class CargoController implements Serializable {
     public void salvar() {
         if (dao.Salvar(entidade)) {
             exibirMensagem("Salvo com sucesso!");
-            entidade = new Cargo();
         } else {
             exibirMensagem("Falha!");
         }

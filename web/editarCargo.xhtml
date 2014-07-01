@@ -20,54 +20,36 @@
                                 Editar Cargo
                             </f:facet>
                             <br/>
-                            Nome: <p:inputText value="#{cargoController.entidade.nome}" 
+                            Nome: <p:inputText id="CampoNome" value="#{cargoController.entidade.nome}" 
                                                required="true" requiredMessage="Este campo é obrigatorio"/>
 
-                            Salario: <p:inputText value="#{cargoController.entidade.salario}" 
+                            Salario: <p:inputText id="CampoSalario" value="#{cargoController.entidade.salario}" 
                                                   required="true" requiredMessage="Este campo é obrigatorio!" />
 
                             Departamento: 
-                            <!--
-                            <p:selectOneMenu value="#{cargoController.entidade.departamentos}" converter="#{departamentoConverter}" id="departamentoselecionado">
-                                <f:selectItem itemLabel="Selecione" itemValue="" id="teste"/>
-                                <f:selectItems value="#{departamentoController.listarTodos()}" />
-
-                            </p:selectOneMenu>
-                            -->  
-                            <p:selectManyCheckbox id="departamento" value="#{cargoController.entidade.departamentos}" 
+                             
+                            <p:selectManyCheckbox id="ListDepartamento" value="#{cargoController.entidade.departamentos}" 
                                                 converter="#{departamentoConverter}" layout="pageDirection" >
-                                <f:selectItems value="#{departamentoController.listarTodos()}" var="c" itemLabel="#{departamento}" itemValue="#{city}"/>
+                                <f:selectItems value="#{departamentoController.listarTodos()}" itemValue="#{src}" />
                             </p:selectManyCheckbox>
 
 
-                            <!--
-                                                        <p:commandButton  ajax="false" value="Adicionar" action="#{cargoController.addDepartamento()}" />
-                            
-                                                        <p:dataTable value="#{cargoController.entidade.departamentos}" var="item" style="size: letter">
-                                                            <p:column  headerText="Departamento">
-                            #{item.nome}
-                            <p:commandButton ajax="false" value="Remover" action="#{cargoController.removeDepartamento()}">
-                                <f:setPropertyActionListener target="#{cargoController.entidade.departamentos}" value="#{item}" />
-                            </p:commandButton>
-                        </p:column>
-                    </p:dataTable>
-                            -->
                             <p:outputLabel></p:outputLabel>
 
                             <f:facet name="footer">
                                 <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
                                 <p:commandButton value="Apagar" onclick="msgApagar.show();"/>
-                                <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemFuncionario.xhtml"/>
+                                <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemCargo.xhtml"/>
 
                                 <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
                                                  widgetVar="msgSalvar" >
-                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
+                                    <p:commandButton ajax="false" value="Sim" action="#{cargoController.salvar()}"/>
                                     <p:commandButton value="Não" onclick="msgSalvar.hide();" />
                                 </p:confirmDialog>
 
                                 <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
                                                  widgetVar="msgApagar" >
-                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
+                                    <p:commandButton ajax="false" value="Sim" action="#{cargoController.salvar()}"/>
                                     <p:commandButton value="Não" onclick="msgApagar.hide();" />
                                 </p:confirmDialog>
 
