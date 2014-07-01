@@ -6,7 +6,7 @@
 package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Departamento;
-import br.edu.ifnmg.tads.as.DomainModel.ICargoRepositorio;
+import br.edu.ifnmg.tads.as.DomainModel.IDepartamentoRepositorio;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -27,7 +27,7 @@ public class DepartamentoConverter implements Serializable, Converter {
      * Creates a new instance of ExpedienteConverter
      */
     @EJB
-    ICargoRepositorio dao;
+    IDepartamentoRepositorio dao;
 
     public DepartamentoConverter() {
     }

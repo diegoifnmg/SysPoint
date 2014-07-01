@@ -26,6 +26,11 @@
                 <p:dataTable style="text-align: center" value="#{funcionarioController.listagem}" var="funcionario" emptyMessage="Registros não encontrados!">
                     <p:column sortBy="Id" headerText="Id" > #{funcionario.id}</p:column>
                     <p:column sortBy="nome" headerText="Nome" >#{funcionario.nome}</p:column>
+                    <p:column sortBy="datanasc" headerText="Data Nascimento">
+                        <p:outputLabel value="#{funcionario.datanasc}"> 
+                            <f:convertDateTime pattern="dd/MM/yyyy"/>      
+                        </p:outputLabel>
+                    </p:column>
                     <p:column sortBy="rg" headerText="Rg" >#{funcionario.rg}</p:column>
                     <p:column sortBy="cpf" headerText="Cpf" >#{funcionario.cpf}</p:column>
                     <p:column sortBy="telefone" headerText="Telefone" >#{funcionario.telefone.ddd}  #{funcionario.telefone.numero} </p:column>
@@ -37,7 +42,7 @@
                         </p:commandButton>
 
                     </p:column>
-                    
+
                 </p:dataTable>
             </ui:define>
 

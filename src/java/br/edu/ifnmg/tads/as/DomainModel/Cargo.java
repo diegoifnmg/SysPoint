@@ -8,6 +8,7 @@ package br.edu.ifnmg.tads.as.DomainModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,18 +32,18 @@ public class Cargo implements Serializable {
     @Column(name = "salario")
     private Double salario;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     private List<Departamento> departamentos;
 
     public Cargo() {
         departamentos = new ArrayList<>();
     }
 
-    public Cargo(Long cargoid, String nome, Double salario, List<Departamento> departamentos) {
+    public Cargo(Long cargoid, String nome, Double salario) {
         this.cargoid = cargoid;
         this.nome = nome;
         this.salario = salario;
-        this.departamentos = departamentos;
+        this.departamentos = new ArrayList<>();
     }
 
     public String getNome() {
