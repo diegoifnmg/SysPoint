@@ -8,7 +8,7 @@
 
     <body>
 
-        <ui:composition template="./TemplateCliente.xhtml">
+        <ui:composition template="./Global.xhtml">
 
             <ui:define name="content">
                 <p:panelGrid style="position: relative; top: 40%; left: 40%" columns="2">
@@ -16,15 +16,14 @@
                         Autenticação
                     </f:facet>
 
-                    <h:outputText value="E-mail: " />
-                    <p:inputText id="txtEmail" value="" />
+                    <h:outputText value="Loguin: " />
+                    <p:inputText id="txtLoguin" value="" />
                     <h:outputText value="Senha: " />
                     <p:password id="txtSenha" value="" />
 
                     <f:facet name="footer">
-                        <p:commandButton style="float: left"  ajax="false" value="Entrar"  />
-                        <p:commandButton style="float: right" ajax="false" value="Esqueci a senha"  />
-                        <p:commandButton style="float: right" ajax="false" value="Cadastrar"  />
+                        <p:commandButton style="float: left" ajax="false" value="Entrar" />
+                        <p:commandButton style="float: start" ajax="false" value="Esqueci a senha"  />
                     </f:facet>
 
                 </p:panelGrid>
