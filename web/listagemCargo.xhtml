@@ -11,10 +11,11 @@
 
             <ui:define name="content">
                 <p:panelGrid columns="2">
+                    <f:facet name="header">Filtro</f:facet>
                     <p:outputLabel value="Nome"/>
                     <p:inputText value="#{cargoController.filtro.nome}"/>
                     <f:facet name="footer"> 
-                        <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-check" action="#{cargoController.filtrar()}"/>  
+                        <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-search" action="#{cargoController.filtrar()}"/>  
                         <p:commandButton ajax="false" value="Novo Cargo" action="#{cargoController.novo()}" />
                     </f:facet>
 

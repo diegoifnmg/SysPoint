@@ -22,13 +22,13 @@
                                 Nome : <p:inputText value="#{departamentoController.entidade.nome}"
                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
                                 <f:facet name="footer">
-                                    <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
-                                    <p:commandButton value="Apagar" onclick="msgApagar.show();"/>
-                                    <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemDepartamento.xhtml"/>
+                                    <p:commandButton value="Salvar" onclick="msgSalvar.show();" icon="ui-icon-check"/>
+                                    <p:commandButton value="Apagar" onclick="msgApagar.show();" icon="ui-icon-close"/>
+                                    <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemDepartamento.xhtml" icon="ui-icon-arrowreturnthick-1-w"/>
 
                                     <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
                                                      widgetVar="msgSalvar" >
-                                        <p:commandButton ajax="false" value="Sim" action="#{departamentoController.salvar()}"/>
+                                        <p:commandButton ajax="false" value="Sim" action="#{departamentoController.salvar()}" icon="ui-icon-disk"/>
                                         <p:commandButton value="Não" onclick="msgSalvar.hide();" />
                                     </p:confirmDialog>
 

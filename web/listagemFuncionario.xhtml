@@ -27,9 +27,9 @@
                     <p:column sortBy="Id" headerText="Id" > #{funcionario.id}</p:column>
                     <p:column sortBy="nome" headerText="Nome" >#{funcionario.nome}</p:column>
                     <p:column sortBy="datanasc" headerText="Data Nascimento">
-                        <p:outputLabel value="#{funcionario.datanasc}"> 
-                            <f:convertDateTime pattern="dd/MM/yyyy"/>      
-                        </p:outputLabel>
+                        <h:outputText value="#{funcionario.datanasc}"> 
+                            <f:convertDateTime dateStyle="long" pattern="dd/MM/yyyy" />  
+                        </h:outputText> 
                     </p:column>
                     <p:column sortBy="rg" headerText="Rg" >#{funcionario.rg}</p:column>
                     <p:column sortBy="cpf" headerText="Cpf" >#{funcionario.cpf}</p:column>

@@ -14,11 +14,12 @@
 
 
                 <p:panelGrid columns="2">
+                    <f:facet name="header">Filtro</f:facet>
                     <p:outputLabel value="Nome"/>
                     <p:inputText value="#{departamentoController.filtro.nome}"/>
                     <f:facet name="footer"> 
-                        <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-check" action="#{departamentoController.filtrar()}"/>  
-                        <p:commandButton ajax="false" value="Novo Departamento" action="#{departamentoController.novo()}" />
+                        <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-search" action="#{departamentoController.filtrar()}"/>  
+                        <p:commandButton ajax="false" value="Novo Departamento" icon="ui-icon-arrowreturnthick-1-e" action="#{departamentoController.novo()}" />
                     </f:facet>
 
                 </p:panelGrid>

@@ -2,9 +2,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 
     <body>
         <ui:composition template="./Global.xhtml">
@@ -23,7 +23,7 @@
                             CPF: <p:inputMask mask="999.999.999-99" size="20" value="#{administradorController.entidade.cpf}" 
                                               required="true" requiredMessage="O campo cpf deve ser preenchido!" />
                             RG: <p:inputMask  mask="99.999.999" size="20" value="#{administradorController.entidade.rg}" 
-                                             required="true"  requiredMessage="Este campo é obrigatorio"/>
+                                              required="true"  requiredMessage="Este campo é obrigatorio"/>
                             <p:outputLabel for="sexo" value="Sexo:" />
                             <p:selectOneMenu id="sexo" value="#{administradorController.entidade.sexo}">
                                 <f:selectItem itemLabel="Masculino" itemValue="M" />
@@ -33,9 +33,9 @@
                                                          label="Data de Nascimento" pattern="dd/MM/yyyy" />   
 
                             <f:facet name="footer">
-                                <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
-                                <p:commandButton value="Apagar" onclick="msgApagar.show();"/>
-                                <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemPessoa.xhtml"/>
+                                <p:commandButton value="Salvar" onclick="msgSalvar.show();" icon="ui-icon-check"/>
+                                <p:commandButton value="Apagar" onclick="msgApagar.show();" icon="ui-icon-close"/>
+                                <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemAdministrador.xhtml" icon="ui-icon-arrowreturnthick-1-w"/>
 
                                 <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
                                                  widgetVar="msgSalvar" >
@@ -124,7 +124,7 @@
 
                                 Confirmar senha: <p:password id="senha2" value="#{administradorController.entidade.senha}" feedback="true" 
                                                              promptLabel="Insira uma senha" weakLabel="Fraca" goodLabel="Boa" strongLabel="Forte"/>
-                               
+
                             </p:panelGrid>
                         </h:panelGrid>
                     </p:tab>
