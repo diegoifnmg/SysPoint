@@ -10,6 +10,7 @@ import br.edu.ifnmg.tads.as.DomainModel.Administrador;
 import br.edu.ifnmg.tads.as.DomainModel.IAdministradorRepositorio;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -33,4 +34,21 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
         return q.getResultList();
     }
 
+     @Override
+     public Administrador porLogin(String login) throws Exception{
+        String consulta = "select a from Administrador a where f.login=:login ";
+                // Cria a consulta no JPA
+        Query query = manager.createQuery(consulta);
+
+        // Aplica os parâmetros da consulta
+        query.setParameter("login", login);
+        
+        try{
+        // Executa a consulta
+            return (Administrador)query.getSingleResult();
+        }catch(NoResultException ex){
+            throw new Exception("Admin não encontrado!");
+            
+        }
+    }
 }
