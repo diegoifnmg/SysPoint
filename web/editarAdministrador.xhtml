@@ -45,7 +45,7 @@
 
                                 <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
                                                  widgetVar="msgApagar" >
-                                    <p:commandButton ajax="false" value="Sim" action="#{administradorController.salvar()}"/>
+                                    <p:commandButton ajax="false" value="Sim" action="#{administradorController.excluir()}"/>
                                     <p:commandButton value="Não" onclick="msgApagar.hide();" />
                                 </p:confirmDialog>
 
@@ -62,7 +62,7 @@
                                 </f:facet>
                                 Rua: <p:inputText value="#{administradorController.entidade.endereco.rua}" 
                                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                                Numero: <p:inputText value="#{administradorController.entidade.endereco.numero}" 
+                                Numero: <p:inputText size="20" value="#{administradorController.entidade.endereco.numero}" 
                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
                                 Bairro: <p:inputText value="#{administradorController.entidade.endereco.bairro}" 
                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
@@ -87,9 +87,9 @@
                                 <f:facet name="header">
                                     Editar Telefone
                                 </f:facet>
-                                DDD: <p:inputText value="#{administradorController.entidade.telefone.ddd}" 
+                                DDD: <p:inputMask mask="99" value="#{administradorController.entidade.telefone.ddd}" 
                                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                                Telefone: <p:inputText value="#{administradorController.entidade.telefone.numero}" 
+                                Telefone: <p:inputMask mask="9999-9999" value="#{administradorController.entidade.telefone.numero}" 
                                                        required="true" requiredMessage="Este campo é obrigatorio"/>
                             </p:panelGrid>
                         </h:panelGrid>

@@ -17,8 +17,8 @@
                     <p:inputText value="#{funcionarioController.filtro.nome}" />       
 
                     <f:facet name="footer"> 
-                        <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-check" action="#{funcionarioController.filtrar()}"/>  
-                        <p:commandButton ajax="false" value="Novo Funcionario" action="#{funcionarioController.novo()}" />
+                        <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-search" action="#{funcionarioController.filtrar()}"/>  
+                        <p:commandButton ajax="false" value="Novo Funcionario" icon="ui-icon-arrowreturnthick-1-e" action="#{funcionarioController.novo()}" />
                     </f:facet>
                 </p:panelGrid>
                 <br />
@@ -37,7 +37,7 @@
                     <p:column sortBy="email" headerText="E-mail" > #{funcionario.email}</p:column>
                     <p:column sortBy="expediente" headerText="Expediente" > #{funcionario.expedientenome}</p:column>        
                     <p:column >
-                        <p:commandButton value="Editar" ajax="false" action="#{funcionarioController.editar()}">
+                        <p:commandButton value="Editar" icon="ui-icon-pencil" ajax="false" action="#{funcionarioController.editar()}">
                             <f:setPropertyActionListener target="#{funcionarioController.entidade}" value="#{funcionario}" />
                         </p:commandButton>
 

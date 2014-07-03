@@ -18,10 +18,10 @@
 
                     <f:facet name="footer"> 
                         <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-search" action="#{administradorController.filtrar()}"/>  
-                        <p:commandButton ajax="false" value="Novo Administrador" action="#{administradorController.novo()}" />
+                        <p:commandButton ajax="false" value="Novo Administrador" icon="ui-icon-arrowreturnthick-1-e" action="#{administradorController.novo()}" />
                     </f:facet>
                 </p:panelGrid>
-                <br />
+                <br/>
 
                 <p:dataTable style="text-align: center" value="#{administradorController.listagem}" var="administrador" emptyMessage="Registros não encontrados!">
                     <p:column sortBy="Id" headerText="Id" > #{administrador.id}</p:column>
@@ -32,7 +32,7 @@
                     <p:column sortBy="email" headerText="E-mail" > #{administrador.email}</p:column>
 
                     <p:column >
-                        <p:commandButton value="Editar" ajax="false" action="#{administradorController.editar()}">
+                        <p:commandButton value="Editar" icon="ui-icon-pencil" ajax="false" action="#{administradorController.editar()}">
                             <f:setPropertyActionListener target="#{administradorController.entidade}" value="#{administrador}" />
                         </p:commandButton>
 

@@ -26,19 +26,19 @@ public class CargoController implements Serializable {
     /**
      * Creates a new instance of CargoController
      */
-@EJB    
+    @EJB
     ICargoRepositorio dao;
     Departamento departamento;
     Cargo entidade;
     Cargo filtro;
     List<Cargo> listagem;
-    
+
     public CargoController() {
-        
+
         entidade = new Cargo();
-        filtro = new Cargo(); 
+        filtro = new Cargo();
     }
-    
+
     public void salvar() {
         if (dao.Salvar(entidade)) {
             exibirMensagem("Salvo com sucesso!");
@@ -47,12 +47,12 @@ public class CargoController implements Serializable {
         }
     }
 
-    public String criar(){
+    public String criar() {
         listagem = null;
         entidade = new Cargo();
         return "editarFuncionario.xhtml";
     }
-    
+
     public void filtrar() {
         listagem = dao.Buscar(filtro);
     }
@@ -62,13 +62,11 @@ public class CargoController implements Serializable {
         return "editarCargo.xhtml";
     }
 
-    public String excluir() {
-        if (dao.Apagar(entidade)) {
-            listagem = null;
-            return "listagemCargo.xhtml";
-        } else {
-            return "";
-        }
+    public String apagar() {
+        dao.Apagar(entidade);
+        listagem = null;
+        exibirMensagem("Apagado com sucesso!");
+        return "listagemFuncionario.xhtml";
     }
 
     public String abrir() {
@@ -78,9 +76,9 @@ public class CargoController implements Serializable {
     public String cancelar() {
         return "listagemCargo.xhtml";
     }
-    
-    public String editar(){
-       return "editarCargo.xhtml";
+
+    public String editar() {
+        return "editarCargo.xhtml";
     }
 
     public Cargo getEntidade() {
@@ -122,12 +120,12 @@ public class CargoController implements Serializable {
     public void setListagem(List<Cargo> listagem) {
         this.listagem = listagem;
     }
-    
+
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(msg));
     }
-    
+
     public void addDepartamento() {
         entidade.add(departamento);
         if (entidade.getDepartamentos() != null) {
@@ -147,5 +145,4 @@ public class CargoController implements Serializable {
             exibirMensagem("Falha ao remover Departamento!");
         }
     }
-
 }

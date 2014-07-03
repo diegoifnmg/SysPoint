@@ -22,7 +22,7 @@
                                                required="true" requiredMessage="Este campo é obrigatorio"/>
                             CPF: <p:inputMask mask="999.999.999-99" size="20" value="#{funcionarioController.entidade.cpf}" 
                                               required="true" requiredMessage="O campo cpf deve ser preenchido!" />
-                            RG: <p:inputText value="#{funcionarioController.entidade.rg}" 
+                            RG: <p:inputMask mask="99.999.999" size="20" value="#{funcionarioController.entidade.rg}" 
                                              required="true" requiredMessage="Este campo é obrigatorio"/>
                             <p:outputLabel for="sexo" value="Sexo:" />
                             <p:selectOneMenu id="sexo" value="#{funcionarioController.entidade.sexo}">
@@ -33,9 +33,9 @@
                                                          label="Data de Nascimento" pattern="dd/MM/yyyy" />   
 
                             <f:facet name="footer">
-                                <p:commandButton value="Salvar" onclick="msgSalvar.show();"/>
-                                <p:commandButton value="Apagar" onclick="msgApagar.show();"/>
-                                <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemFuncionario.xhtml"/>
+                                <p:commandButton value="Salvar" onclick="msgSalvar.show(); " icon="ui-icon-check"/>
+                                <p:commandButton value="Apagar" onclick="msgApagar.show();" icon="ui-icon-close"/>
+                                <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemFuncionario.xhtml" icon="ui-icon-arrowreturnthick-1-w"/>
 
                                 <p:confirmDialog message="Deseja realmente salvar as alterações?" header="Confirmação" severity="alert"
                                                  widgetVar="msgSalvar" >
@@ -45,7 +45,7 @@
 
                                 <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
                                                  widgetVar="msgApagar" >
-                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
+                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.excluir()}"/>
                                     <p:commandButton value="Não" onclick="msgApagar.hide();" />
                                 </p:confirmDialog>
 
@@ -62,7 +62,7 @@
                                 </f:facet>
                                 Rua: <p:inputText value="#{funcionarioController.entidade.endereco.rua}" 
                                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                                Numero: <p:inputText value="#{funcionarioController.entidade.endereco.numero}" 
+                                Numero: <p:inputText size="20" value="#{funcionarioController.entidade.endereco.numero}" 
                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
                                 Bairro: <p:inputText value="#{funcionarioController.entidade.endereco.bairro}" 
                                                      required="true" requiredMessage="Este campo é obrigatorio"/>
@@ -87,9 +87,9 @@
                                 <f:facet name="header">
                                     Editar Telefone
                                 </f:facet>
-                                DDD: <p:inputText value="#{funcionarioController.entidade.telefone.ddd}" 
+                                DDD: <p:inputMask mask="99" value="#{funcionarioController.entidade.telefone.ddd}" 
                                                   required="true" requiredMessage="Este campo é obrigatorio"/>
-                                Telefone: <p:inputText value="#{funcionarioController.entidade.telefone.numero}" 
+                                Telefone: <p:inputMask mask="9999-9999" value="#{funcionarioController.entidade.telefone.numero}" 
                                                        required="true" requiredMessage="Este campo é obrigatorio"/>
                             </p:panelGrid>
                         </h:panelGrid>

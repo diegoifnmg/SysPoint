@@ -7,6 +7,7 @@
 package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 
@@ -17,6 +18,55 @@ import javax.persistence.OneToOne;
 @Entity
 public class Administrador extends Pessoa implements  Serializable {
     
+    @Column(name = "ativo")
+    private boolean ativo;
+
+    public Administrador() {
+        
+        this.ativo = true;
+    }
+
+    public Administrador(boolean ativo) {
+        this.ativo = ativo;
+    }
     
     
+    
+
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 23 * hash + (this.ativo ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Administrador other = (Administrador) obj;
+        if (this.ativo != other.ativo) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return getNome().toString();
+    }
+    
+   
 }

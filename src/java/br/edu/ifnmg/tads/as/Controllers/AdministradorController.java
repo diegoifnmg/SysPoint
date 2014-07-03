@@ -23,7 +23,7 @@ import javax.inject.Named;
  */
 @Named(value = "administradorController")
 @SessionScoped
-public class AdministradorController extends ControllerGenerico<Administrador> implements Serializable{
+public class AdministradorController implements Serializable{
 
     Email email;
     Telefone telefone;
@@ -58,7 +58,7 @@ public class AdministradorController extends ControllerGenerico<Administrador> i
     public String criar(){
         listagem = null;
         entidade = new Administrador();
-        return "editarFuncionario.xhtml";
+        return "editarAdministrador.xhtml";
     }
     
     public void filtrar() {

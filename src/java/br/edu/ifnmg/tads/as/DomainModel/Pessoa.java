@@ -54,7 +54,7 @@ public class Pessoa implements Serializable {
 
     @Column(name = "senha", length = 255)
     private String senha;
-
+    
     @OneToOne
     @JoinColumn(name = "emailid")
     private Email email;

@@ -16,7 +16,7 @@
                     <p:inputText value="#{cargoController.filtro.nome}"/>
                     <f:facet name="footer"> 
                         <p:commandButton ajax="false" value="Filtrar" icon="ui-icon-search" action="#{cargoController.filtrar()}"/>  
-                        <p:commandButton ajax="false" value="Novo Cargo" action="#{cargoController.novo()}" />
+                        <p:commandButton ajax="false" value="Novo Cargo" icon="ui-icon-arrowreturnthick-1-e" action="#{cargoController.novo()}" />
                     </f:facet>
 
                 </p:panelGrid>
@@ -30,7 +30,7 @@
                     </p:column>
 
                     <p:column>
-                        <p:commandButton value="Editar" action="editarCargo.xhtml">
+                        <p:commandButton value="Editar" icon="ui-icon-pencil" action="editarCargo.xhtml">
                             <f:setPropertyActionListener target="#{cargoController.entidade}" value="#{item}"/>
                         </p:commandButton>
                     </p:column>

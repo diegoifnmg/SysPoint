@@ -25,11 +25,15 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @Column(name = "expedientefim")
     private String Expedientefim;
+    
+    @Column(name = "ativo")
+    private boolean ativo;
 
     public Funcionario() {
         this.Expedientenome = "";
         this.Expedienteinicio = "";
         this.Expedientefim = "";
+        this.ativo = true;
     }
 
     public Funcionario(String Expedientenome, String Expedienteinicio, String Expedientefim) {
@@ -62,6 +66,16 @@ public class Funcionario extends Pessoa implements Serializable {
         this.Expedientefim = Expedientefim;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 3;

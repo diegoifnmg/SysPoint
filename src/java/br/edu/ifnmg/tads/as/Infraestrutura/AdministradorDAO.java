@@ -23,14 +23,62 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
         super(Administrador.class);
     }
 
+    
     @Override
     public List<Administrador> Buscar(Administrador obj) {
-        String Consulta = "select a from Administrador a";
-        if (obj != null) {
-            Consulta = Consulta + " where a.nome like '%" + obj.getNome() + "%'";
-        }
-        Query q = manager.createQuery(Consulta);
-        return q.getResultList();
-    }
+         // Corpo da consulta
+        String consulta = "select f from Administrador f WHERE f.ativo = 1 AND f.id != 0 ";
 
+        // A parte where da consulta
+        String filtro = " ";
+
+
+        // Verifica campo por campo os valores que serão filtrados
+        if (obj != null) {
+            //Nome
+            if (obj.getNome() != null && obj.getNome().length() > 0) {
+                filtro += " AND f.nome like '%"+obj.getNome()+"%' ";
+              
+            }
+            //Id
+            if (obj.getId() != null && obj.getId() > 0) {
+                
+                filtro += " AND f.id like '%"+obj.getId()+"%'";
+                
+            }
+            //Cpf
+            if (obj.getCpf() != null && obj.getCpf().length() > 0) {
+                
+                filtro += " AND f.cpf like '%"+obj.getCpf()+"%'";
+                
+            }
+
+            // Se houver filtros, coloca o "where" na consulta
+            if (filtro.length() > 0) {
+                consulta += filtro;
+            }
+        }
+
+        // Cria a consulta no JPA
+        Query query = manager.createQuery(consulta);
+
+        // Executa a consulta
+        return query.getResultList();
+    }
+    
+    @Override
+    public boolean Apagar(Administrador obj) {
+        try {
+            Query query = manager.createQuery("Update Administrador a set a.ativo = 0 WHERE a.id =:id");
+            query.setParameter("id", obj.getId());
+            query.executeUpdate();
+
+            return true;
+
+        } catch (Exception ex) {
+            ex.printStackTrace();
+
+            return false;
+        }
+    }
 }
