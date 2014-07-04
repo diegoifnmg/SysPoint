@@ -12,7 +12,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -35,10 +35,10 @@ public class RegistroAtividade implements Serializable {
     
     private Boolean status;
     
-    @OneToOne
+    @ManyToOne
     private Departamento departamento;
     
-    @OneToOne
+    @ManyToOne
     private Funcionario funcionario;
 
     public RegistroAtividade(Long registroatividadeid, Date inicio, Date fim, Boolean status, Departamento departamento, Funcionario funcionario) {

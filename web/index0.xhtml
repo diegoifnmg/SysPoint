@@ -16,10 +16,10 @@
                         Autenticação
                     </f:facet>
 
-                    <h:outputText value="Loguin: " />
-                    <p:inputText id="txtLoguin" value="" />
-                    <h:outputText value="Senha: " />
-                    <p:password id="txtSenha" value="" />
+                    <p:outputLabel value="Login:" />
+                    <p:inputText id="admin" value="#{autenticacaoController.login}" required="true" requiredMessage="Insira o Usuario!"/>
+                    <p:outputLabel value="Senha:" />
+                    <p:password id="senha" value="#{autenticacaoController.senha}" required="true" requiredMessage="Insira a senha!" />
 
                     <f:facet name="footer">
                         <p:commandButton style="float: left" ajax="false" value="Entrar" />
