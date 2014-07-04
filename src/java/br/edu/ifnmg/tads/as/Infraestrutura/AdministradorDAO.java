@@ -8,9 +8,9 @@ package br.edu.ifnmg.tads.as.Infraestrutura;
 
 import br.edu.ifnmg.tads.as.DomainModel.Administrador;
 import br.edu.ifnmg.tads.as.DomainModel.IAdministradorRepositorio;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
-import javax.persistence.NoResultException;
 import javax.persistence.Query;
 
 /**
@@ -78,11 +78,45 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
 
         } catch (Exception ex) {
             ex.printStackTrace();
-
             return false;
         }
     }
+    
+    @Override
+    public Administrador Login(Administrador admin) {
 
+        String consulta = "select a from Administrador a where a.ativo = 1";
+
+        String filtro = "";
+
+        HashMap<String, Object> param = new HashMap<String, Object>();
+
+        if (admin != null) {
+            if ((admin.getLogin() != null && admin.getLogin().length() > 0) && (admin.getSenha() != null && admin.getLogin().length() > 0)) {
+                filtro += " a.login=:login and a.senha=:senha";
+                param.put("login", admin.getLogin());
+                param.put("senha", admin.getSenha());
+            }
+        }
+
+        if (filtro.length() > 0) {
+            // consulta = consulta + " and " + filtro;
+            consulta = consulta + filtro;
+        }
+
+        Query query = manager.createQuery(consulta);
+
+        for (String par : param.keySet()) {
+            query.setParameter(par, param.get(par));
+        }
+
+        if (query.getSingleResult() != null) {
+            return (Administrador) query.getSingleResult();
+        } else {
+            return null;
+        }
+
+    }
  
     
 }

@@ -12,4 +12,5 @@ public interface IAdministradorRepositorio extends RepositorioGenerico<Administr
     
     //public Administrador porLogin(String login) throws Exception;   TIREI PQ TAVA DANDO ERRO NO CADASTRO DE ADMIN
     
+    public Administrador Login(Administrador admin);
 }

@@ -6,12 +6,9 @@ package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Administrador;
 import br.edu.ifnmg.tads.as.DomainModel.IAdministradorRepositorio;
-import br.edu.ifnmg.tads.as.DomainModel.ILogAcessoRepositorioAdmin;
-import br.edu.ifnmg.tads.as.DomainModel.LogAcessoAdmin;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
-import java.util.Enumeration;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -27,109 +24,56 @@ public class AutenticacaoController implements Serializable {
 
     @EJB
     IAdministradorRepositorio dao;
-    
-    @EJB
-    ILogAcessoRepositorioAdmin daoLogAcesso;
-    String login;
-    String senha;
+    Administrador login;
     Administrador admin;
+
     public AutenticacaoController() {
+        login = new Administrador();
     }
-    
+
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
-        context.addMessage(null, new FacesMessage("Aviso",msg));
+        context.addMessage(null, new FacesMessage(msg));
     }
-    
+
     public String validar() {
+
         try {
-//            admin = dao.porLogin(login);   TIREI PQ TAVA DANDO ERRO NO CADASTRO DE ADMIN
+            admin = dao.Login(login);
 
             if (admin == null) {
                 exibirMensagem("Login ou senha não Correspondem");
-                return "login.xhtml";
+                return "index0.xhtml";
             } else {
-                if (senha.equals(admin.getSenha())) {
+                HttpSession session;
 
-                    HttpSession session;
-
-                    FacesContext ctx = FacesContext.getCurrentInstance();
-                    session = (HttpSession) ctx.getExternalContext().getSession(false);
-                    session.setAttribute("adminAutenticado", admin);
-                    
-                    //Adicionando logIn entrada no sistema
-                    LogAcessoAdmin log = new LogAcessoAdmin();
-                    log.setTipo(1);
-                    log.setAdmin(admin);
-                    
-                    daoLogAcesso.Salvar(log);
-
-                    // AppendLog("Login");
-                    return "index.xhtml";
-                } else {
-                    exibirMensagem("Login ou senha não correspondem");
-                    return "login.xhtml";
-                }
+                FacesContext ctx = FacesContext.getCurrentInstance();
+                session = (HttpSession) ctx.getExternalContext().getSession(false);
+                session.setAttribute("adminAutenticado", admin);
+                exibirMensagem("Usuário Logado !");
+                return "index.xhtml";
             }
+
         } catch (Exception ex) {
             //ex.printStackTrace();
-            exibirMensagem(ex.getMessage());
-            
-            return "login.xhtml";
+            exibirMensagem("Usuário Ou Senhas Inválidos");
+            return "index0.xhtml";
         }
-        
-
-    }
-    
-    public Administrador pegarDaSessao() {
-        HttpSession session;
-
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        session = (HttpSession) ctx.getExternalContext().getSession(false);
-
-        return (Administrador) session.getAttribute("adminAutenticado");
-
     }
 
-    public String logout() {
-        HttpSession session;
-
-        FacesContext ctx = FacesContext.getCurrentInstance();
-        session = (HttpSession) ctx.getExternalContext().getSession(false);
-        session.setAttribute("usuarioAutenticado", null);
-
-       // AppendLog("Logout");
-        Enumeration<String> vals = session.getAttributeNames();
-
-        while (vals.hasMoreElements()) {
-            session.removeAttribute(vals.nextElement());
-        }
-
-        //Adicionando logOut saída no sistema
-        LogAcessoAdmin log = new LogAcessoAdmin();
-        log.setTipo(2);
-        log.setAdmin(admin);
-
-        daoLogAcesso.Salvar(log);
-
-        return "login.xhtml";
-
-    }
-
-    public String getLogin() {
+    public Administrador getLogin() {
         return login;
     }
 
-    public void setLogin(String login) {
+    public void setLogin(Administrador login) {
         this.login = login;
     }
 
-    public String getSenha() {
-        return senha;
+    public Administrador getAdmin() {
+        return admin;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public void setAdmin(Administrador admin) {
+        this.admin = admin;
     }
-    
 }
