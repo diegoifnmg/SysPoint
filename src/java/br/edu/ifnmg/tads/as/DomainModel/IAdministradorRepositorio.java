@@ -10,6 +10,6 @@ package br.edu.ifnmg.tads.as.DomainModel;
  */
 public interface IAdministradorRepositorio extends RepositorioGenerico<Administrador>{
     
-    public Administrador porLogin(String login) throws Exception;
+    //public Administrador porLogin(String login) throws Exception;   TIREI PQ TAVA DANDO ERRO NO CADASTRO DE ADMIN
     
 }

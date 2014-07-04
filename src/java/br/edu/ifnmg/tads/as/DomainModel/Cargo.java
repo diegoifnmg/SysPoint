@@ -26,21 +26,25 @@ public class Cargo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cargoid;
+    private Long id;
     @Column(name = "nome", length = 255)
     private String nome;
     @Column(name = "salario")
     private Double salario;
+    
+    @Column(name = "ativo")
+    private boolean ativo;
     
     @ManyToMany(cascade = CascadeType.ALL)
     private List<Departamento> departamentos;
 
     public Cargo() {
         departamentos = new ArrayList<>();
+        this.ativo = true;
     }
 
     public Cargo(Long cargoid, String nome, Double salario) {
-        this.cargoid = cargoid;
+        this.id = cargoid;
         this.nome = nome;
         this.salario = salario;
         this.departamentos = new ArrayList<>();
@@ -70,12 +74,12 @@ public class Cargo implements Serializable {
         this.departamentos = departamentos;
     }
 
-    public Long getCargoid() {
-        return cargoid;
+    public Long getId() {
+        return id;
     }
 
-    public void setCargoid(Long cargoid) {
-        this.cargoid = cargoid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public void add(Departamento e) {
@@ -90,10 +94,20 @@ public class Cargo implements Serializable {
         }
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    
+    
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (cargoid != null ? cargoid.hashCode() : 0);
+        hash += (id != null ? id.hashCode() : 0);
         return hash;
     }
 
@@ -104,7 +118,7 @@ public class Cargo implements Serializable {
             return false;
         }
         Cargo other = (Cargo) object;
-        if ((this.cargoid == null && other.cargoid != null) || (this.cargoid != null && !this.cargoid.equals(other.cargoid))) {
+        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
         return true;

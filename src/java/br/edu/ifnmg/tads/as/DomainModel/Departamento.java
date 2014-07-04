@@ -23,25 +23,29 @@ public class Departamento implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long departamentoid;
+    private Long id;
     
     @Column(name = "nome", length = 255)
     private String nome;
 
+    @Column(name = "ativo")
+    private boolean ativo;
+    
     public Departamento(String nome) {
         this.nome = nome;
+        this.ativo = true;
     }
 
     public Departamento() {
         this.nome = "";
     }
 
-    public Long getDepartamentoid() {
-        return departamentoid;
+    public Long getId() {
+        return id;
     }
 
-    public void setDepartamentoid(Long departamentoid) {
-        this.departamentoid = departamentoid;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -52,11 +56,20 @@ public class Departamento implements Serializable {
         this.nome = nome;
     }
 
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 67 * hash + Objects.hashCode(this.departamentoid);
-        hash = 67 * hash + Objects.hashCode(this.nome);
+        int hash = 3;
+        hash = 61 * hash + Objects.hashCode(this.id);
+        hash = 61 * hash + Objects.hashCode(this.nome);
+        hash = 61 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -69,14 +82,20 @@ public class Departamento implements Serializable {
             return false;
         }
         final Departamento other = (Departamento) obj;
-        if (!Objects.equals(this.departamentoid, other.departamentoid)) {
+        if (!Objects.equals(this.id, other.id)) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
         return true;
     }
+
+    
+    
 
     @Override
     public String toString() {

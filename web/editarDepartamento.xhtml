@@ -34,7 +34,7 @@
 
                                     <p:confirmDialog message="Deseja realmente apagar o registro?" header="Confirmação" severity="alert"
                                                      widgetVar="msgApagar" >
-                                        <p:commandButton ajax="false" value="Sim" action="#{departamentoController.salvar()}"/>
+                                        <p:commandButton ajax="false" value="Sim" action="#{departamentoController.excluir()}"/>
                                         <p:commandButton value="Não" onclick="msgApagar.hide();" />
                                     </p:confirmDialog>
 

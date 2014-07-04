@@ -43,7 +43,7 @@ public class AutenticacaoController implements Serializable {
     
     public String validar() {
         try {
-            admin = dao.porLogin(login);
+//            admin = dao.porLogin(login);   TIREI PQ TAVA DANDO ERRO NO CADASTRO DE ADMIN
 
             if (admin == null) {
                 exibirMensagem("Login ou senha não Correspondem");

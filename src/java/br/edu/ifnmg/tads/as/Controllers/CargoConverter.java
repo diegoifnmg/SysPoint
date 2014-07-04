@@ -46,7 +46,7 @@ public class CargoConverter implements Serializable, Converter {
             return "";
         } else {
             Cargo c = (Cargo) value;
-            return c.getCargoid().toString();
+            return c.getId().toString();
         }
     }
 

@@ -50,7 +50,7 @@ public class CargoController implements Serializable {
     public String criar() {
         listagem = null;
         entidade = new Cargo();
-        return "editarFuncionario.xhtml";
+        return "editarCargo.xhtml";
     }
 
     public void filtrar() {
@@ -62,11 +62,13 @@ public class CargoController implements Serializable {
         return "editarCargo.xhtml";
     }
 
-    public String apagar() {
-        dao.Apagar(entidade);
-        listagem = null;
-        exibirMensagem("Apagado com sucesso!");
-        return "listagemFuncionario.xhtml";
+    public String excluir() {
+        if (dao.Apagar(entidade)) {
+            listagem = null;
+            return "listagemCargo.xhtml";
+        } else {
+            return "";
+        }
     }
 
     public String abrir() {

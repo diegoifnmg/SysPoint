@@ -20,11 +20,10 @@ import javax.persistence.Query;
 @Stateless(name = "IAdministradorRepositorio")
 public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdministradorRepositorio{
 
-    public AdministradorDAO() {
+  public AdministradorDAO() {
         super(Administrador.class);
     }
 
-    
     @Override
     public List<Administrador> Buscar(Administrador obj) {
          // Corpo da consulta
@@ -65,12 +64,13 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
 
         // Executa a consulta
         return query.getResultList();
+
     }
     
     @Override
     public boolean Apagar(Administrador obj) {
         try {
-            Query query = manager.createQuery("Update Administrador a set a.ativo = 0 WHERE a.id =:id");
+            Query query = manager.createQuery("Update Administrador s set s.ativo = 0 WHERE s.id =:id");
             query.setParameter("id", obj.getId());
             query.executeUpdate();
 
@@ -82,4 +82,7 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
             return false;
         }
     }
+
+ 
+    
 }

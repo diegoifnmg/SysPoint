@@ -48,7 +48,7 @@ public class DepartamentoConverter implements Serializable, Converter {
             return "";
         } else {
             Departamento d = (Departamento) value;
-            return d.getDepartamentoid().toString();
+            return d.getId().toString();
         }
     }
 
