@@ -3,7 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.edu.ifnmg.tads.as.Infraestrutura;
 
 import br.edu.ifnmg.tads.as.DomainModel.Departamento;
@@ -17,8 +16,9 @@ import javax.persistence.Query;
  * @author Maike Jordan
  */
 @Stateless(name = "IDepartamentoRepositorio")
-public class DepartamentoDAO extends GenericoDAO<Departamento> implements IDepartamentoRepositorio{
+public class DepartamentoDAO extends GenericoDAO<Departamento> implements IDepartamentoRepositorio {
 
+   
     public DepartamentoDAO() {
         super(Departamento.class);
     }
@@ -26,7 +26,7 @@ public class DepartamentoDAO extends GenericoDAO<Departamento> implements IDepar
     @Override
     public List<Departamento> Buscar(Departamento obj) {
          // Corpo da consulta
-        String consulta = "select f from Departamento f WHERE f.ativo = 1 AND f.id != 0 ";
+        String consulta = "select d from Departamento d WHERE d.ativo = 1 AND d.id != 0 ";
 
         // A parte where da consulta
         String filtro = " ";
@@ -36,10 +36,16 @@ public class DepartamentoDAO extends GenericoDAO<Departamento> implements IDepar
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " AND f.nome like '%"+obj.getNome()+"%' ";
+                filtro += " AND d.nome like '%"+obj.getNome()+"%' ";
               
             }
-            
+            //Id
+            if (obj.getId() != null && obj.getId() > 0) {
+                
+                filtro += " AND d.id like '%"+obj.getId()+"%'";
+                
+            }
+
             // Se houver filtros, coloca o "where" na consulta
             if (filtro.length() > 0) {
                 consulta += filtro;
@@ -57,7 +63,7 @@ public class DepartamentoDAO extends GenericoDAO<Departamento> implements IDepar
     @Override
     public boolean Apagar(Departamento obj) {
         try {
-            Query query = manager.createQuery("Update Departamento s set s.ativo = 0 WHERE s.id =:id");
+            Query query = manager.createQuery("Update Departamento d set d.ativo = 0 WHERE d.id =:id");
             query.setParameter("id", obj.getId());
             query.executeUpdate();
 
@@ -69,5 +75,4 @@ public class DepartamentoDAO extends GenericoDAO<Departamento> implements IDepar
             return false;
         }
     }
-
 }

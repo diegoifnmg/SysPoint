@@ -12,5 +12,7 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IDepartamentoRepositorio extends RepositorioGenerico<Departamento> {
+
+    
     
 }
