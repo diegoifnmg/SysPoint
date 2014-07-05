@@ -28,13 +28,10 @@
 
                             Departamento: 
                              
-                            <p:selectManyCheckbox id="ListDepartamento" value="#{cargoController.entidade.departamentos}" 
-                                                converter="#{departamentoConverter}" layout="pageDirection">
-                                <f:selectItems value="#{departamentoController.listarTodos()}" />
+                            <p:selectManyCheckbox value="#{cargoController.entidade.departamentos}" 
+                                                  converter="#{departamentoConverter}" layout="pageDirection" requiredMessage="Cadastre um Departamento Para Cadastrar um Cargo !" required="true" >
+                                <f:selectItems value="#{departamentoController.listarTodos()}"/>
                             </p:selectManyCheckbox>
-
-
-                            <p:outputLabel></p:outputLabel>
 
                             <f:facet name="footer">
                                 <p:commandButton value="Salvar" onclick="msgSalvar.show();" icon="ui-icon-check"/>
