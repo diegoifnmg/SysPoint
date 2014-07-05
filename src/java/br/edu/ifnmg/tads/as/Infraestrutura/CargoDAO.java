@@ -24,7 +24,7 @@ public class CargoDAO extends GenericoDAO<Cargo> implements ICargoRepositorio{
     @Override
     public List<Cargo> Buscar(Cargo obj) {
          // Corpo da consulta
-        String consulta = "select f from Cargo f WHERE f.ativo = 1 AND f.id != 0 ";
+        String consulta = "select c from Cargo c WHERE c.ativo = 1 AND c.cargoid != 0 ";
 
         // A parte where da consulta
         String filtro = " ";
@@ -34,7 +34,7 @@ public class CargoDAO extends GenericoDAO<Cargo> implements ICargoRepositorio{
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " AND f.nome like '%"+obj.getNome()+"%' ";
+                filtro += " AND c.nome like '%"+obj.getNome()+"%' ";
               
             }
             
@@ -55,8 +55,8 @@ public class CargoDAO extends GenericoDAO<Cargo> implements ICargoRepositorio{
     @Override
     public boolean Apagar(Cargo obj) {
         try {
-            Query query = manager.createQuery("Update Cargo s set s.ativo = 0 WHERE s.id =:id");
-            query.setParameter("id", obj.getId());
+            Query query = manager.createQuery("Update Cargo c set c.ativo = 0 WHERE c.id =:cargoid");
+            query.setParameter("id", obj.getCargoid());
             query.executeUpdate();
 
             return true;

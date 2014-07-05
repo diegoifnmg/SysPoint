@@ -33,7 +33,7 @@
                                                          label="Data de Nascimento" pattern="dd/MM/yyyy" />   
 
                             <f:facet name="footer">
-                                <p:commandButton value="Salvar" onclick="msgSalvar.show(); " icon="ui-icon-check"/>
+                                <p:commandButton value="Salvar" onclick="msgSalvar.show();" icon="ui-icon-check"/>
                                 <p:commandButton value="Apagar" onclick="msgApagar.show();" icon="ui-icon-close"/>
                                 <p:commandButton ajax="false" immediate="true" value="Voltar" action="listagemFuncionario.xhtml" icon="ui-icon-arrowreturnthick-1-w"/>
 
@@ -130,13 +130,17 @@
                                     <f:selectItem itemLabel="Diurno" itemValue="Diurno" />
                                     <f:selectItem itemLabel="Noturno" itemValue="Noturno" />
                                     <f:selectItem itemLabel="Misto" itemValue="Misto" />
-
                                 </p:selectOneMenu>
 
                                 Inicio : <p:inputText value="#{funcionarioController.entidade.expedienteinicio}"
                                                       required="true" requiredMessage="Este campo é obrigatorio"/>
                                 Fim : <p:inputText value="#{funcionarioController.entidade.expedientefim}"
                                                    required="true" requiredMessage="Este campo é obrigatorio"/>
+
+                                Cargo : <h:selectOneRadio value="#{funcionarioController.entidade.cargo}" 
+                                                              converter="#{cargoConverter}"  requiredMessage="Cadastre um Departamento Para Cadastrar um Cargo !" required="true" >
+                                             <f:selectItems value="#{cargoController.listarTodos()}"/>
+                                        </h:selectOneRadio>
 
                             </p:panelGrid>
                         </h:panelGrid>

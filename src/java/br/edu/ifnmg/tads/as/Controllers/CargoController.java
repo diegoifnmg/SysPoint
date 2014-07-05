@@ -23,18 +23,18 @@ import javax.faces.context.FacesContext;
 @SessionScoped
 public class CargoController implements Serializable {
 
-    /**
-     * Creates a new instance of CargoController
-     */
-    @EJB
-    ICargoRepositorio dao;
     Departamento departamento;
     Cargo entidade;
     Cargo filtro;
     List<Cargo> listagem;
-
+    
+    @EJB
+    ICargoRepositorio dao;
+    
+    /**
+     * Creates a new instance of CargoController
+     */
     public CargoController() {
-
         entidade = new Cargo();
         filtro = new Cargo();
     }
@@ -128,23 +128,8 @@ public class CargoController implements Serializable {
         context.addMessage(null, new FacesMessage(msg));
     }
 
-    public void addDepartamento() {
-        entidade.add(departamento);
-        if (entidade.getDepartamentos() != null) {
-            exibirMensagem("Departamento adicionado com sucesso!");
-            departamento = new Departamento();
-        } else {
-            exibirMensagem("Falha ao adicionar e-mail!");
-        }
-    }
-
-    public void removeDepartamento() {
-        entidade.remove(departamento);
-        if (entidade.getDepartamentos() == null) {
-            exibirMensagem("Departamento removido com sucesso!");
-            departamento = new Departamento();
-        } else {
-            exibirMensagem("Falha ao remover Departamento!");
-        }
+    public List<Cargo> listarTodos() {
+        listagem = dao.Buscar(filtro);
+        return listagem;
     }
 }

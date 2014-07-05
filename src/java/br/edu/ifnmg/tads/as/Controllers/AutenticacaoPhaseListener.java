@@ -27,13 +27,13 @@ public class AutenticacaoPhaseListener implements PhaseListener {
         FacesContext fc = event.getFacesContext();
         ExternalContext ec = fc.getExternalContext();
 
-        if (!fc.getViewRoot().getViewId().contains("index0.xhtml")) {
+        if (!fc.getViewRoot().getViewId().contains("login.xhtml")) {
             HttpSession session = (HttpSession) ec.getSession(true);
             Administrador admin = (Administrador) session.getAttribute("adminAutenticado");
 
             if (admin == null) {
                 try {
-                    ec.redirect(ec.getRequestContextPath() + "/index0.xhtml");
+                    ec.redirect(ec.getRequestContextPath() + "/login.xhtml");
                 } catch (IOException ex) {
                     Logger.getLogger(AutenticacaoPhaseListener.class.getName()).log(Level.SEVERE, null, ex);
                 }
