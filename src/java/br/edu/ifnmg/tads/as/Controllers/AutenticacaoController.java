@@ -9,6 +9,7 @@ import br.edu.ifnmg.tads.as.DomainModel.IAdministradorRepositorio;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import java.util.Enumeration;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
@@ -60,6 +61,25 @@ public class AutenticacaoController implements Serializable {
             return "index0.xhtml";
         }
     }
+    
+    public String logout() {
+        HttpSession session;
+
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        session = (HttpSession) ctx.getExternalContext().getSession(false);
+        session.setAttribute("adminAutenticado", null);
+
+       // AppendLog("Logout");
+        Enumeration<String> vals = session.getAttributeNames();
+
+        while (vals.hasMoreElements()) {
+            session.removeAttribute(vals.nextElement());
+        }
+        
+        return "index0.xhtml";
+
+    }
+    
 
     public Administrador getLogin() {
         return login;

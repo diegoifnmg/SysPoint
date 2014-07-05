@@ -38,6 +38,7 @@ public class Departamento implements Serializable {
 
     public Departamento() {
         this.nome = "";
+        this.ativo = true;
     }
 
     public Long getId() {
