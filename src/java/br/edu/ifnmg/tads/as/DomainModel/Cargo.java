@@ -8,6 +8,7 @@ package br.edu.ifnmg.tads.as.DomainModel;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,8 +28,10 @@ public class Cargo implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @Column(name = "nome", length = 255)
     private String nome;
+    
     @Column(name = "salario")
     private Double salario;
     
@@ -102,27 +105,44 @@ public class Cargo implements Serializable {
         this.ativo = ativo;
     }
 
-    
-    
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        int hash = 7;
+        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.nome);
+        hash = 97 * hash + Objects.hashCode(this.salario);
+        hash = 97 * hash + (this.ativo ? 1 : 0);
+        hash = 97 * hash + Objects.hashCode(this.departamentos);
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Cargo)) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
             return false;
         }
-        Cargo other = (Cargo) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cargo other = (Cargo) obj;
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.salario, other.salario)) {
+            return false;
+        }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
+        if (!Objects.equals(this.departamentos, other.departamentos)) {
             return false;
         }
         return true;
     }
+
 
     @Override
     public String toString() {

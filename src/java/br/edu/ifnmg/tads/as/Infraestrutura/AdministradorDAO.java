@@ -101,7 +101,7 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
 
         if (filtro.length() > 0) {
             consulta = consulta + " and " + filtro;
-            //consulta = consulta + filtro;
+            
         }
 
         Query query = manager.createQuery(consulta);
@@ -115,7 +115,6 @@ public class AdministradorDAO extends GenericoDAO<Administrador> implements IAdm
         } else {
             return null;
         }
-
     }
  
     

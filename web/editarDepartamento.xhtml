@@ -21,6 +21,7 @@
                                 <br/>
                                 Nome : <p:inputText value="#{departamentoController.entidade.nome}"
                                                     required="true" requiredMessage="Este campo é obrigatorio"/>
+
                                 <f:facet name="footer">
                                     <p:commandButton value="Salvar" onclick="msgSalvar.show();" icon="ui-icon-check"/>
                                     <p:commandButton value="Apagar" onclick="msgApagar.show();" icon="ui-icon-close"/>
@@ -39,6 +40,9 @@
                                     </p:confirmDialog>
 
                                 </f:facet>
+
+
+
                             </p:panelGrid>
                         </p:growl>
                     </p:tab>

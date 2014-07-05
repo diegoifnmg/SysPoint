@@ -30,10 +30,10 @@ public class Departamento implements Serializable {
 
     @Column(name = "ativo")
     private boolean ativo;
-    
+
     public Departamento(String nome) {
         this.nome = nome;
-        this.ativo = true;
+
     }
 
     public Departamento() {
@@ -67,10 +67,10 @@ public class Departamento implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 61 * hash + Objects.hashCode(this.id);
-        hash = 61 * hash + Objects.hashCode(this.nome);
-        hash = 61 * hash + (this.ativo ? 1 : 0);
+        int hash = 7;
+        hash = 79 * hash + Objects.hashCode(this.id);
+        hash = 79 * hash + Objects.hashCode(this.nome);
+        hash = 79 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -94,9 +94,6 @@ public class Departamento implements Serializable {
         }
         return true;
     }
-
-    
-    
 
     @Override
     public String toString() {
