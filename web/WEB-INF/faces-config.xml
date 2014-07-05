@@ -9,3 +9,4 @@
         <phase-listener>br.edu.ifnmg.tads.as.Controllers.AutenticacaoPhaseListener</phase-listener>
     </lifecycle>
 </faces-config>
+
