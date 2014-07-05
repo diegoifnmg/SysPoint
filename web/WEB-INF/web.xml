@@ -25,7 +25,7 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>index0.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
     <listener>
         <listener-class>com.sun.faces.config.ConfigureListener</listener-class>

@@ -32,7 +32,6 @@ public class Funcionario extends Pessoa implements Serializable {
     private boolean ativo;
     
     @ManyToOne
-    @JoinColumn(name="id", referencedColumnName="id")
     private Cargo cargo;
  
     public Funcionario() {

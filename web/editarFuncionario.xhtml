@@ -137,10 +137,10 @@
                                 Fim : <p:inputText value="#{funcionarioController.entidade.expedientefim}"
                                                    required="true" requiredMessage="Este campo é obrigatorio"/>
 
-                                Cargo : <p:selectOneRadio value="#{funcionarioController.entidade.cargo}" 
-                                                              converter="#{cargoConverter}" layout="pageDirection" requiredMessage="Cadastre um Departamento Para Cadastrar um Cargo !" required="true" >
+                                Cargo : <h:selectOneRadio value="#{funcionarioController.entidade.cargo}" 
+                                                              converter="#{cargoConverter}"  requiredMessage="Cadastre um Departamento Para Cadastrar um Cargo !" required="true" >
                                              <f:selectItems value="#{cargoController.listarTodos()}"/>
-                                        </p:selectOneRadio>
+                                        </h:selectOneRadio>
 
                             </p:panelGrid>
                         </h:panelGrid>

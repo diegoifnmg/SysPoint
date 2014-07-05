@@ -6,7 +6,7 @@
 package br.edu.ifnmg.tads.as.Controllers;
 
 import br.edu.ifnmg.tads.as.DomainModel.Cargo;
-import br.edu.ifnmg.tads.as.Infraestrutura.CargoDAO;
+import br.edu.ifnmg.tads.as.DomainModel.ICargoRepositorio;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import javax.ejb.EJB;
@@ -27,7 +27,7 @@ public class CargoConverter implements Serializable, Converter {
      * Creates a new instance of ExpedienteConverter
      */
     @EJB
-    CargoDAO dao;
+    ICargoRepositorio dao;
 
     public CargoConverter() {
     }
@@ -48,7 +48,7 @@ public class CargoConverter implements Serializable, Converter {
             return "";
         } else {
             Cargo c = (Cargo) value;
-            return c.getId().toString();
+            return c.getCargoid().toString();
         }
     }
 

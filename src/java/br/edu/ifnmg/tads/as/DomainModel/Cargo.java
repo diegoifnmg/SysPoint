@@ -27,7 +27,7 @@ public class Cargo implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long cargoid; 
     
     @Column(name = "nome", length = 255)
     private String nome;
@@ -47,7 +47,7 @@ public class Cargo implements Serializable {
     }
 
     public Cargo(Long cargoid, String nome, Double salario) {
-        this.id = cargoid;
+        this.cargoid = cargoid;
         this.nome = nome;
         this.salario = salario;
         this.departamentos = new ArrayList<>();
@@ -77,12 +77,12 @@ public class Cargo implements Serializable {
         this.departamentos = departamentos;
     }
 
-    public Long getId() {
-        return id;
+    public Long getCargoid() {
+        return cargoid;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCargoid(Long cargoid) {
+        this.cargoid = cargoid;
     }
 
     public void add(Departamento e) {
@@ -108,7 +108,7 @@ public class Cargo implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.id);
+        hash = 97 * hash + Objects.hashCode(this.cargoid);
         hash = 97 * hash + Objects.hashCode(this.nome);
         hash = 97 * hash + Objects.hashCode(this.salario);
         hash = 97 * hash + (this.ativo ? 1 : 0);
@@ -125,7 +125,7 @@ public class Cargo implements Serializable {
             return false;
         }
         final Cargo other = (Cargo) obj;
-        if (!Objects.equals(this.id, other.id)) {
+        if (!Objects.equals(this.cargoid, other.cargoid)) {
             return false;
         }
         if (!Objects.equals(this.nome, other.nome)) {
