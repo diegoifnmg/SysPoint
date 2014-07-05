@@ -13,11 +13,13 @@ import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
+import javax.inject.Named;
 
 /**
  *
  * @author Maike Jordan
  */
+@Named(value = "cargoConverter")
 @SessionScoped
 public class CargoConverter implements Serializable, Converter {
 

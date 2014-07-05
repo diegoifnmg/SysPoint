@@ -9,6 +9,8 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /**
  *
@@ -19,27 +21,33 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @Column(name = "expedientenome")
     private String Expedientenome;
-
+   
     @Column(name = "expedienteinicio")
     private String Expedienteinicio;
-
+    
     @Column(name = "expedientefim")
     private String Expedientefim;
     
     @Column(name = "ativo")
     private boolean ativo;
-
+    
+    @ManyToOne
+    @JoinColumn(name="id", referencedColumnName="id")
+    private Cargo cargo;
+ 
     public Funcionario() {
         this.Expedientenome = "";
         this.Expedienteinicio = "";
         this.Expedientefim = "";
+        this.cargo = null;
         this.ativo = true;
     }
 
-    public Funcionario(String Expedientenome, String Expedienteinicio, String Expedientefim) {
+    public Funcionario(String Expedientenome, String Expedienteinicio, String Expedientefim, Cargo cargo) {
         this.Expedientenome = Expedientenome;
         this.Expedienteinicio = Expedienteinicio;
         this.Expedientefim = Expedientefim;
+        this.cargo = cargo;
     }
 
     public String getExpedientenome() {
@@ -74,14 +82,22 @@ public class Funcionario extends Pessoa implements Serializable {
         this.ativo = ativo;
     }
 
-    
-    
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + Objects.hashCode(this.Expedientenome);
-        hash = 53 * hash + Objects.hashCode(this.Expedienteinicio);
-        hash = 53 * hash + Objects.hashCode(this.Expedientefim);
+        hash = 79 * hash + Objects.hashCode(this.Expedientenome);
+        hash = 79 * hash + Objects.hashCode(this.Expedienteinicio);
+        hash = 79 * hash + Objects.hashCode(this.Expedientefim);
+        hash = 79 * hash + (this.ativo ? 1 : 0);
+        hash = 79 * hash + Objects.hashCode(this.cargo);
         return hash;
     }
 
@@ -103,12 +119,17 @@ public class Funcionario extends Pessoa implements Serializable {
         if (!Objects.equals(this.Expedientefim, other.Expedientefim)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
+        if (!Objects.equals(this.cargo, other.cargo)) {
+            return false;
+        }
         return true;
     }
 
     @Override
     public String toString() {
-        return getNome().toString();
+        return getNome();
     }
-    
 }
