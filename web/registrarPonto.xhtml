@@ -35,7 +35,44 @@
 
             </p:menubar>
         <div id="content" class="center_content">
-            <ui:insert name="content">Olá mundo</ui:insert>
+            <ui:insert name="content">
+            
+                <div id="teste">
+                <p:panelGrid columns="1">
+                            <f:facet name="header">
+                                Registrar Ponto
+                            </f:facet>
+                            
+                            
+                                <p:clock />
+                            
+                            
+                            <f:facet name="footer">
+                                <p:commandButton value="Registrar Ponto" onclick="msgPonto.show();" icon="ui-icon-check"/>
+                                <p:commandButton value="Registrar Atividade" onclick="msgAtividade.show();" icon="ui-icon-close"/>
+                                
+
+                                <p:confirmDialog message="Deseja realmente Registrar o ponto?" header="Confirmação" severity="alert"
+                                                 widgetVar="msgSalvar" >
+                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
+                                    <p:commandButton value="Não" onclick="msgPonto.hide();" />
+                                </p:confirmDialog>
+
+                                <p:confirmDialog message="Deseja realmente Registrar Atividade?" header="Confirmação" severity="alert"
+                                                 widgetVar="msgApagar" >
+                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.excluir()}"/>
+                                    <p:commandButton value="Não" onclick="msgAtividade.hide();" />
+                                </p:confirmDialog>
+
+                            </f:facet>
+                        </p:panelGrid
+        </div>
+                    
+                
+            
+            
+            
+            </ui:insert>
         </div>
             </h:form>
         <div id="bottom">

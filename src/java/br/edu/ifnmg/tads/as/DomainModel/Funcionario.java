@@ -21,19 +21,26 @@ public class Funcionario extends Pessoa implements Serializable {
 
     @Column(name = "expedientenome")
     private String Expedientenome;
-   
     @Column(name = "expedienteinicio")
     private String Expedienteinicio;
-    
     @Column(name = "expedientefim")
     private String Expedientefim;
-    
     @Column(name = "ativo")
     private boolean ativo;
     
+    @Column(name = "FGTS")
+    private Double FGTS;
+    
+    @Column(name = "INSS")
+    private Double INSS;
+    
+    @Column(name = "adicionalNoturno")
+    private Double adicionalNoturno;
+    
+    
     @ManyToOne
     private Cargo cargo;
- 
+
     public Funcionario() {
         this.Expedientenome = "";
         this.Expedienteinicio = "";
@@ -88,6 +95,48 @@ public class Funcionario extends Pessoa implements Serializable {
     public void setCargo(Cargo cargo) {
         this.cargo = cargo;
     }
+
+    //-------------------------------------------------------------------------------
+    public Double setFGTS(Cargo cargo, Double FGTS) {
+        
+        FGTS = (cargo.getSalario() * 0.08);
+        
+        return FGTS;
+    }
+
+    public Double getFGTS() {
+        return FGTS;
+    }
+    
+    public Double setINSS(Cargo cargo, Double INSS) {
+        
+        if (cargo.getSalario() < 1.175) {
+            INSS = (INSS * 0.08);
+        }
+
+        if ((cargo.getSalario() > 1.175) || (cargo.getSalario() < 1.958)) {
+            INSS = (INSS * 0.09);
+        }
+
+        if ((cargo.getSalario() > 1.958) || (cargo.getSalario() < 3.916)) {
+            INSS = (INSS * 0.11);
+        }
+
+        if (cargo.getSalario() > 3.916) {
+            INSS = (INSS * 0.20);
+        }
+        
+        return INSS;
+    }
+
+    public Double getINSS() {
+        return INSS;
+    }
+
+    
+    
+    //-------------------------------------------------------------------------------
+    
 
     @Override
     public int hashCode() {
