@@ -4,7 +4,8 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -15,57 +16,52 @@
     </h:head>
 
     <h:body>
-        
+
         <h:form>
             <div id="top" align="center">
                 <img src="./resources/Imagens/Logo.png" ></img>
             </div>
-           
+
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Ponto" url="index.xhtml" />
-                <p:menuitem value="Contra Cheque" url="index.xhtml" />
-                <p:menuitem value="Logout" action="#{autenticacaoController.logout()}" icon="ui-icon-close" />
+                <p:menuitem value="Ponto" url="registrarPonto.xhtml" />
+                <p:menuitem value="Contra Cheque" url="ObterContraCheque.xhtml" />
+                <p:menuitem value="Logout" action="#{autenticacaoFuncionarioController.logout()}" icon="ui-icon-close" />
             </p:menubar>
-        <div id="content" class="center_content">
-            <ui:insert name="content">
-            
-                <div id="teste">
-                <p:panelGrid columns="1">
+            <div id="content" class="center_content">
+                <ui:insert name="content">
+
+                    <div id="teste">
+                        <p:panelGrid columns="2">
                             <f:facet name="header">
                                 Registrar Atividade
                             </f:facet>
-                            
-                            
-                                <p:clock />
-                            
+
+                            <br></br> 
+                            <br></br>
+                            Data Atual <p:clock/>
+                            Departamento
+                            <p:selectOneMenu id="departamento" value="#{registroAtividadeConverter.entidade.departamento}"
+                                             converter="#{departamentoConverter}">
+                                <f:selectItems value="#{departamentoController.listarTodos()}" />
+                            </p:selectOneMenu>
                             
                             <f:facet name="footer">
                                 <p:commandButton value="Registrar Atividade" onclick="msgAtividade.show();" icon="ui-icon-check"/>
-                                
-                                
+
+
 
                                 <p:confirmDialog message="Deseja realmente Registrar o Atividade?" header="Confirmação" severity="alert"
                                                  widgetVar="msgSalvar" >
                                     <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
                                     <p:commandButton value="Não" onclick="msgAtividade.hide();" />
                                 </p:confirmDialog>
-
-                                
-                                
-                                
-
                             </f:facet>
-                </p:panelGrid>
-        </div>
-                    
-                
-            
-            
-            
-            </ui:insert>
-        </div>
-            </h:form>
+                        </p:panelGrid>
+                    </div>
+                </ui:insert>
+            </div>
+        </h:form>
         <div id="bottom">
             Copyrigth 2014 
         </div>

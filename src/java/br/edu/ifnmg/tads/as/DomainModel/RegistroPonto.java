@@ -8,7 +8,9 @@ package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -27,7 +29,7 @@ public class RegistroPonto implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long registropontoid;
     
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.MERGE, fetch= FetchType.EAGER)
     private Funcionario funcionario;
     
     @Temporal(TemporalType.DATE)

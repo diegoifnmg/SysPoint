@@ -8,7 +8,9 @@ package br.edu.ifnmg.tads.as.DomainModel;
 
 import java.io.Serializable;
 import java.util.Date;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -35,17 +37,17 @@ public class RegistroAtividade implements Serializable {
     
     private Boolean status;
     
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.MERGE, fetch= FetchType.EAGER)
     private Departamento departamento;
     
-    @ManyToOne
+    @ManyToOne(cascade= CascadeType.MERGE, fetch= FetchType.EAGER)
     private Funcionario funcionario;
 
     public RegistroAtividade(Long registroatividadeid, Date inicio, Date fim, Boolean status, Departamento departamento, Funcionario funcionario) {
         this.registroatividadeid = registroatividadeid;
         this.entrada = inicio;
         this.saida = fim;
-        this.status = status;
+        this.status = false;
         this.departamento = departamento;
         this.funcionario = funcionario;
     }
@@ -54,7 +56,7 @@ public class RegistroAtividade implements Serializable {
         this.registroatividadeid = null;
         this.entrada = null;
         this.saida = null;
-        this.status = null;
+        this.status = false;
         this.departamento = null;
         this.funcionario = null;
     }
