@@ -19,25 +19,56 @@
             <img src="./resources/Imagens/Logo.png" ></img>
         </div>
         <h:form>
-            <div id="teste">
+            <p:tabView>
+                <p:tab title="Administrador">
+                    <div id="teste">
 
-                <p:panelGrid style="position: relative; top: 40%; left: 40%" columns="2">
-                    <f:facet name="header">
-                        Autenticação
-                    </f:facet>
+                        <p:panelGrid style="position: relative; top: 40%; left: 40%" columns="2">
+                            <f:facet name="header">
+                                Autenticação
+                            </f:facet>
 
-                    <p:outputLabel value="Login:" />
-                    <p:inputText id="admin" value="#{autenticacaoController.login.login}" required="true" requiredMessage="Insira o Usuario!"/>
-                    <p:outputLabel value="Senha:" />
-                    <p:password id="senha" value="#{autenticacaoController.login.senha}" required="true" requiredMessage="Insira a senha!" />
+                            <p:outputLabel value="Login:" />
+                            <p:inputText id="admin" value="#{autenticacaoController.login.login}" required="true" requiredMessage="Insira o Usuario!"/>
+                            <p:outputLabel value="Senha:" />
+                            <p:password id="senha" value="#{autenticacaoController.login.senha}" required="true" requiredMessage="Insira a senha!" />
 
-                    <f:facet name="footer">
-                        <p:commandButton style="float: left" ajax="false" value="Entrar" action="#{autenticacaoController.validar()}" />
-                        <p:commandButton style="float: start" ajax="false" value="Esqueci a senha"  />
-                    </f:facet>
+                            <f:facet name="footer">
+                                <p:commandButton style="float: left" ajax="false" value="Entrar" action="#{autenticacaoController.validar()}" />
+                                <p:commandButton style="float: start" ajax="false" value="Esqueci a senha"  />
+                            </f:facet>
 
-                </p:panelGrid>
-            </div>
+                        </p:panelGrid>
+                    </div>
+                </p:tab>
+
+                <p:tab title="Funcionario">
+
+                    <div id="teste">
+
+                        <p:panelGrid style="position: relative; top: 40%; left: 40%" columns="2">
+                            <f:facet name="header">
+                                Autenticação
+                            </f:facet>
+
+                            <p:outputLabel value="Login:" />
+                            <p:inputText id="func" value="#{autenticacaoController.login.login}" required="true" requiredMessage="Insira o Usuario!"/>
+                            <p:outputLabel value="Senha:" />
+                            <p:password id="senhafunc" value="#{autenticacaoController.login.senha}" required="true" requiredMessage="Insira a senha!" />
+
+                            <f:facet name="footer">
+                                <p:commandButton style="float: left" ajax="false" value="Entrar" action="#{autenticacaoController.validar()}" />
+                                <p:commandButton style="float: start" ajax="false" value="Esqueci a senha"  />
+                            </f:facet>
+
+                        </p:panelGrid>
+                    </div>
+
+
+                </p:tab>
+
+            </p:tabView>
+
         </h:form>
     </body>
 </html>
