@@ -7,6 +7,7 @@ package br.edu.ifnmg.tads.as.Infraestrutura;
 
 import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.as.DomainModel.IFuncionarioRepositorio;
+import java.util.HashMap;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.Query;
@@ -24,7 +25,7 @@ public class FuncionarioDAO extends GenericoDAO<Funcionario> implements IFuncion
 
     @Override
     public List<Funcionario> Buscar(Funcionario obj) {
-         // Corpo da consulta
+        // Corpo da consulta
         String consulta = "select f from Funcionario f WHERE f.ativo = 1 AND f.id != 0 ";
 
         // A parte where da consulta
@@ -35,20 +36,20 @@ public class FuncionarioDAO extends GenericoDAO<Funcionario> implements IFuncion
         if (obj != null) {
             //Nome
             if (obj.getNome() != null && obj.getNome().length() > 0) {
-                filtro += " AND f.nome like '%"+obj.getNome()+"%' ";
-              
+                filtro += " AND f.nome like '%" + obj.getNome() + "%' ";
+
             }
             //Id
             if (obj.getId() != null && obj.getId() > 0) {
-                
-                filtro += " AND f.id like '%"+obj.getId()+"%'";
-                
+
+                filtro += " AND f.id like '%" + obj.getId() + "%'";
+
             }
             //Cpf
             if (obj.getCpf() != null && obj.getCpf().length() > 0) {
-                
-                filtro += " AND f.cpf like '%"+obj.getCpf()+"%'";
-                
+
+                filtro += " AND f.cpf like '%" + obj.getCpf() + "%'";
+
             }
 
             // Se houver filtros, coloca o "where" na consulta
@@ -64,7 +65,7 @@ public class FuncionarioDAO extends GenericoDAO<Funcionario> implements IFuncion
         return query.getResultList();
 
     }
-    
+
     @Override
     public boolean Apagar(Funcionario obj) {
         try {
@@ -80,4 +81,41 @@ public class FuncionarioDAO extends GenericoDAO<Funcionario> implements IFuncion
             return false;
         }
     }
+
+    @Override
+    public Funcionario Login(Funcionario funcionario) {
+
+        String consulta = "select f from Funcionario f where f.ativo = 1";
+
+        String filtro = "";
+
+        HashMap<String, Object> param = new HashMap<String, Object>();
+
+        if (funcionario != null) {
+            if ((funcionario.getLogin() != null && funcionario.getLogin().length() > 0) && (funcionario.getSenha() != null && funcionario.getLogin().length() > 0)) {
+                filtro += " a.login=:login and a.senha=:senha";
+                param.put("login", funcionario.getLogin());
+                param.put("senha", funcionario.getSenha());
+            }
+        }
+
+        if (filtro.length() > 0) {
+            consulta = consulta + " and " + filtro;
+
+        }
+        
+        
+        Query query = manager.createQuery(consulta);
+
+        for (String par : param.keySet()) {
+            query.setParameter(par, param.get(par));
+        }
+
+        if (query.getSingleResult() != null) {
+            return (Funcionario) query.getSingleResult();
+        } else {
+            return null;
+        }
+    }
+
 }

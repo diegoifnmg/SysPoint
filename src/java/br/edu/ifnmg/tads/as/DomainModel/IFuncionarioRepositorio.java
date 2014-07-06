@@ -12,5 +12,6 @@ import javax.ejb.Remote;
  */
 @Remote
 public interface IFuncionarioRepositorio extends RepositorioGenerico<Funcionario> {
-    
+
+    public Funcionario Login(Funcionario funcionario);
 }
