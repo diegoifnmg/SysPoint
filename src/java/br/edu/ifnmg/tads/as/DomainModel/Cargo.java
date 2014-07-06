@@ -98,12 +98,12 @@ public class Cargo implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 37 * hash + Objects.hashCode(this.cargoid);
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + Objects.hashCode(this.salario);
-        hash = 37 * hash + (this.ativo ? 1 : 0);
-        hash = 37 * hash + Objects.hashCode(this.departamentos);
+        int hash = 3;
+        hash = 23 * hash + Objects.hashCode(this.cargoid);
+        hash = 23 * hash + Objects.hashCode(this.nome);
+        hash = 23 * hash + Objects.hashCode(this.salario);
+        hash = 23 * hash + (this.ativo ? 1 : 0);
+        hash = 23 * hash + Objects.hashCode(this.departamentos);
         return hash;
     }
 
@@ -133,6 +133,7 @@ public class Cargo implements Serializable {
         }
         return true;
     }
+
 
     @Override
     public String toString() {

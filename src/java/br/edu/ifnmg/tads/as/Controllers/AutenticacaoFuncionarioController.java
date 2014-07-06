@@ -55,7 +55,7 @@ public class AutenticacaoFuncionarioController implements Serializable {
                 session = (HttpSession) ctx.getExternalContext().getSession(false);
                 session.setAttribute("funcionarioAutenticado", funcionario);
                 exibirMensagem("Funcionario Logado !");
-                return "index.xhtml";
+                return "registrarPonto.xhtml";
             }
 
         } catch (Exception ex) {

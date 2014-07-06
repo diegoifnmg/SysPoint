@@ -23,8 +23,7 @@
            
             <p:growl id="messages"/>
             <p:menubar>
-                <p:menuitem value="Ponto" url="registrarAtividade.xhtml" />
-                <p:menuitem value="Atividades" url="registrarAtividade.xhtml" />
+                <p:menuitem value="Ponto" url="index.xhtml" />
                 <p:menuitem value="Contra Cheque" url="index.xhtml" />
                 <p:menuitem value="Logout" action="#{autenticacaoController.logout()}" icon="ui-icon-close" />
             </p:menubar>
@@ -34,7 +33,7 @@
                 <div id="teste">
                 <p:panelGrid columns="1">
                             <f:facet name="header">
-                                Registrar Ponto
+                                Registrar Atividade
                             </f:facet>
                             
                             
@@ -42,14 +41,14 @@
                             
                             
                             <f:facet name="footer">
-                                <p:commandButton value="Registrar Ponto" onclick="msgPonto.show();" icon="ui-icon-check"/>
+                                <p:commandButton value="Registrar Atividade" onclick="msgAtividade.show();" icon="ui-icon-check"/>
                                 
                                 
 
-                                <p:confirmDialog message="Deseja realmente Registrar o ponto?" header="Confirmação" severity="alert"
+                                <p:confirmDialog message="Deseja realmente Registrar o Atividade?" header="Confirmação" severity="alert"
                                                  widgetVar="msgSalvar" >
                                     <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
-                                    <p:commandButton value="Não" onclick="msgPonto.hide();" />
+                                    <p:commandButton value="Não" onclick="msgAtividade.hide();" />
                                 </p:confirmDialog>
 
                                 

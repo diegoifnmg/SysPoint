@@ -68,9 +68,9 @@ public class Departamento implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.nome);
-        hash = 79 * hash + (this.ativo ? 1 : 0);
+        hash = 47 * hash + Objects.hashCode(this.id);
+        hash = 47 * hash + Objects.hashCode(this.nome);
+        hash = 47 * hash + (this.ativo ? 1 : 0);
         return hash;
     }
 
@@ -94,6 +94,8 @@ public class Departamento implements Serializable {
         }
         return true;
     }
+
+    
 
     @Override
     public String toString() {
