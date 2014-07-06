@@ -42,7 +42,10 @@ public class Cargo implements Serializable {
     private List<Departamento> departamentos;
 
     public Cargo() {
-        departamentos = new ArrayList<>();
+        this.departamentos = new ArrayList<>();
+        this.nome = "";
+        this.salario = null;
+        this.departamentos = new ArrayList<>();
         this.ativo = true;
     }
 
@@ -84,19 +87,7 @@ public class Cargo implements Serializable {
     public void setCargoid(Long cargoid) {
         this.cargoid = cargoid;
     }
-
-    public void add(Departamento e) {
-        if (!departamentos.contains(e)) {
-            departamentos.add(e);
-        }
-    }
-
-    public void remove(Departamento e) {
-        if (departamentos.contains(e)) {
-            departamentos.remove(e);
-        }
-    }
-
+    
     public boolean isAtivo() {
         return ativo;
     }
@@ -107,12 +98,12 @@ public class Cargo implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.cargoid);
-        hash = 97 * hash + Objects.hashCode(this.nome);
-        hash = 97 * hash + Objects.hashCode(this.salario);
-        hash = 97 * hash + (this.ativo ? 1 : 0);
-        hash = 97 * hash + Objects.hashCode(this.departamentos);
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.cargoid);
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.salario);
+        hash = 37 * hash + (this.ativo ? 1 : 0);
+        hash = 37 * hash + Objects.hashCode(this.departamentos);
         return hash;
     }
 
@@ -142,7 +133,6 @@ public class Cargo implements Serializable {
         }
         return true;
     }
-
 
     @Override
     public String toString() {

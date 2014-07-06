@@ -4,13 +4,13 @@
  */
 package br.edu.ifnmg.tads.as.DomainModel;
 
-import javax.ejb.Remote;
+import javax.ejb.Local;
 
 /**
  *
  * @author Diego
  */
-@Remote
+@Local
 public interface ICargoRepositorio extends RepositorioGenerico<Cargo>{
     
 }

@@ -5,6 +5,7 @@
  */
 package br.edu.ifnmg.tads.as.Controllers;
 
+import br.edu.ifnmg.tads.as.DomainModel.Cargo;
 import br.edu.ifnmg.tads.as.DomainModel.Email;
 import br.edu.ifnmg.tads.as.DomainModel.Endereco;
 import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
@@ -32,10 +33,11 @@ public class FuncionarioController implements Serializable {
     Funcionario entidade;
     Funcionario filtro;
     List<Funcionario> listagem;
+    Cargo cargo;
     
     @EJB
     IFuncionarioRepositorio dao;
-    
+
     /**
      * Creates a new instance of FuncionarioController
      */
@@ -45,6 +47,7 @@ public class FuncionarioController implements Serializable {
         email = new Email();
         telefone = new Telefone();
         endereco = new Endereco();
+        cargo = new Cargo();
     }
 
     public void salvar() {
@@ -56,12 +59,12 @@ public class FuncionarioController implements Serializable {
         }
     }
 
-    public String criar(){
+    public String criar() {
         listagem = null;
         entidade = new Funcionario();
         return "editarFuncionario.xhtml";
     }
-    
+
     public void filtrar() {
         listagem = dao.Buscar(filtro);
     }
@@ -87,9 +90,9 @@ public class FuncionarioController implements Serializable {
     public String cancelar() {
         return "listagemFuncionario.xhtml";
     }
-    
-    public String editar(){
-       return "editarFuncionario.xhtml";
+
+    public String editar() {
+        return "editarFuncionario.xhtml";
     }
 
     public Funcionario getEntidade() {
@@ -148,9 +151,16 @@ public class FuncionarioController implements Serializable {
         this.endereco = endereco;
     }
 
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
+    }
+
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(msg));
     }
-
 }
