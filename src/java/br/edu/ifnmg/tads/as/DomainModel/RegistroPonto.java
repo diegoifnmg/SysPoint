@@ -32,10 +32,10 @@ public class RegistroPonto implements Serializable {
     @ManyToOne(cascade= CascadeType.MERGE, fetch= FetchType.EAGER)
     private Funcionario funcionario;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date entrada;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date saida;
 
     public RegistroPonto(Funcionario funcionario, Date entrada, Date saida) {
