@@ -4,6 +4,7 @@
  */
 package br.edu.ifnmg.tads.as.Controllers;
 
+import br.edu.ifnmg.tads.as.DomainModel.Funcionario;
 import br.edu.ifnmg.tads.as.DomainModel.IRegistroAtividadeRepositorio;
 import br.edu.ifnmg.tads.as.DomainModel.RegistroAtividade;
 import javax.inject.Named;
@@ -16,14 +17,15 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  *
  * @author Maike Jordan
  */
-@Named(value = "registroAtividadeConverter")
+@Named(value = "registroAtividadeController")
 @SessionScoped
-public class RegistroAtividadeConverter implements Serializable {
+public class RegistroAtividadeController implements Serializable {
 
     RegistroAtividade entidade;
     RegistroAtividade filtro;
@@ -34,7 +36,7 @@ public class RegistroAtividadeConverter implements Serializable {
     /**
      * Creates a new instance of RegistroAtividadeConverter
      */
-    public RegistroAtividadeConverter() {
+    public RegistroAtividadeController() {
         entidade = new RegistroAtividade();
         filtro = new RegistroAtividade();
     }
@@ -70,6 +72,16 @@ public class RegistroAtividadeConverter implements Serializable {
     public void exibirMensagem(String msg) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(msg));
+    }
+    
+    public Funcionario pegarDaSessao() {
+        HttpSession session;
+
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        session = (HttpSession) ctx.getExternalContext().getSession(false);
+
+        return (Funcionario) session.getAttribute("funcionarioAutenticado");
+
     }
     
     private String getDateTime() { 

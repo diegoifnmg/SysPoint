@@ -64,6 +64,17 @@ public class AutenticacaoFuncionarioController implements Serializable {
             return "index0.xhtml";
         }
     }
+   
+    public Funcionario pegarDaSessao() {
+        HttpSession session;
+
+        FacesContext ctx = FacesContext.getCurrentInstance();
+        session = (HttpSession) ctx.getExternalContext().getSession(false);
+
+        return (Funcionario) session.getAttribute("usuarioAutenticado");
+
+    }
+
     
     public String logout() {
         HttpSession session;

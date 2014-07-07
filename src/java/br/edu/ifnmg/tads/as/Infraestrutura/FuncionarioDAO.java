@@ -93,7 +93,7 @@ public class FuncionarioDAO extends GenericoDAO<Funcionario> implements IFuncion
 
         if (funcionario != null) {
             if ((funcionario.getLogin() != null && funcionario.getLogin().length() > 0) && (funcionario.getSenha() != null && funcionario.getLogin().length() > 0)) {
-                filtro += " a.login=:login and a.senha=:senha";
+                filtro += " f.login=:login and f.senha=:senha";
                 param.put("login", funcionario.getLogin());
                 param.put("senha", funcionario.getSenha());
             }
@@ -103,8 +103,7 @@ public class FuncionarioDAO extends GenericoDAO<Funcionario> implements IFuncion
             consulta = consulta + " and " + filtro;
 
         }
-        
-        
+              
         Query query = manager.createQuery(consulta);
 
         for (String par : param.keySet()) {

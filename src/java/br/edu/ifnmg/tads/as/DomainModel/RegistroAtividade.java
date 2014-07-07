@@ -29,10 +29,10 @@ public class RegistroAtividade implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long registroatividadeid;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date entrada;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.TIME)
     private Date saida;
     
     private Boolean status;

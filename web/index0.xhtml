@@ -52,9 +52,9 @@
                             </f:facet>
 
                             <p:outputLabel value="Login:" />
-                            <p:inputText id="func" value="#{autenticacaoFuncionarioController.login.login}" required="true" requiredMessage="Insira o Usuario!"/>
+                            <p:inputText id="func" value="#{autenticacaoFuncionarioController.login.login}" required="false" requiredMessage="Insira o Usuario!"/>
                             <p:outputLabel value="Senha:" />
-                            <p:password id="senhafunc" value="#{autenticacaoFuncionarioController.login.senha}" required="true" requiredMessage="Insira a senha!" />
+                            <p:password id="senhafunc" value="#{autenticacaoFuncionarioController.login.senha}" required="false" requiredMessage="Insira a senha!" />
 
                             <f:facet name="footer">
                                 <p:commandButton style="float: left" ajax="false" value="Entrar" action="#{autenticacaoFuncionarioController.validar()}" />

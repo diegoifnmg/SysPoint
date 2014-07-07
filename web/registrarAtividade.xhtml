@@ -1,71 +1,47 @@
-<?xml version='1.0' encoding='UTF-8' ?> 
+<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <h:head>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
-        <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
-        <link rel="shortcut icon" href="./resources/Imagens/xxt.ico"/> 
-        <title>SysPoint</title>
-    </h:head>
+    <body>
 
-    <h:body>
+        <ui:composition template="./TemplateFuncionario.xhtml">
 
-        <h:form>
-            <div id="top" align="center">
-                <img src="./resources/Imagens/Logo.png" ></img>
-            </div>
+            <ui:define name="content">
 
-            <p:growl id="messages"/>
-            <p:menubar>
-                <p:menuitem value="Ponto" url="registrarPonto.xhtml" />
-                <p:menuitem value="Contra Cheque" url="ObterContraCheque.xhtml" />
-                <p:menuitem value="Logout" action="#{autenticacaoFuncionarioController.logout()}" icon="ui-icon-close" />
-            </p:menubar>
-            <div id="content" class="center_content">
-                <ui:insert name="content">
+                <div id="teste">
+                    <p:panelGrid columns="2">
+                        <f:facet name="header">
+                            Registrar Atividade
+                        </f:facet>
 
-                    <div id="teste">
-                        <p:panelGrid columns="2">
-                            <f:facet name="header">
-                                Registrar Atividade
-                            </f:facet>
+                        <br></br> 
+                        <br></br>
+                        Data Atual:  <p:clock/>
+                        Departamento: 
+                        <p:selectOneMenu id="departamento" value="#{registroAtividadeController.entidade.departamento}"
+                                         converter="#{departamentoConverter}">
+                            <f:selectItems value="#{departamentoController.listarTodos()}" />
+                        </p:selectOneMenu>
+                        Funcionario:
+                        <p:outputLabel value="#{autenticacaoFuncionarioController.pegarDaSessao().nome}"> </p:outputLabel>
 
-                            <br></br> 
-                            <br></br>
-                            Data Atual <p:clock/>
-                            Departamento
-                            <p:selectOneMenu id="departamento" value="#{registroAtividadeConverter.entidade.departamento}"
-                                             converter="#{departamentoConverter}">
-                                <f:selectItems value="#{departamentoController.listarTodos()}" />
-                            </p:selectOneMenu>
-                            
-                            <f:facet name="footer">
-                                <p:commandButton value="Registrar Atividade" onclick="msgAtividade.show();" icon="ui-icon-check"/>
+                        <f:facet name="footer">
+                            <p:commandButton value="Registrar Atividade" onclick="msgAtividade.show();" icon="ui-icon-check"/>
+                            <p:confirmDialog message="Deseja realmente Registrar o Atividade?" header="Confirmação" severity="alert"
+                                             widgetVar="msgSalvar" >
+                                <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
+                                <p:commandButton value="Não" onclick="msgAtividade.hide();" />
+                            </p:confirmDialog>
+                        </f:facet>
+                    </p:panelGrid>
+                </div>
 
+            </ui:define>
 
+        </ui:composition>
 
-                                <p:confirmDialog message="Deseja realmente Registrar o Atividade?" header="Confirmação" severity="alert"
-                                                 widgetVar="msgSalvar" >
-                                    <p:commandButton ajax="false" value="Sim" action="#{funcionarioController.salvar()}"/>
-                                    <p:commandButton value="Não" onclick="msgAtividade.hide();" />
-                                </p:confirmDialog>
-                            </f:facet>
-                        </p:panelGrid>
-                    </div>
-                </ui:insert>
-            </div>
-        </h:form>
-        <div id="bottom">
-            Copyrigth 2014 
-        </div>
-
-    </h:body>
-
+    </body>
 </html>
